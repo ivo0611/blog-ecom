@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}  <!-- Nạp filter richtext -->
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Nội dung bài viết -->
+        <div class="col-lg-8">
+            <article class="blog-post">
+                <h1>{{ page.title }}</h1>
+                <p class="text-muted">{{ page.first_published_at }}</p>
+                <p class="created_by">{{page.owner_id}}</p>
+                <p>Categories:
+                    {% for category in page.categories.all %}
+                        <a href="#">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p>{{ page.intro }}</p>
+                <div class="blog-content">
+                       {{ page.body.html|safe }}
+                </div>
+            </article>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            {% include 'home/layout/sidebar.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

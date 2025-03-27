@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Mai Hoa Dịch Quán{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <img src="{% static 'assets/img/osd.png' %}" alt="Hình ảnh" class="hero-image">
+</div>
+{% endblock %}
+
+<style>
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* About Section */
+.about-section {
+    background: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+.about-section h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+.about-section .feature-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+.about-section .feature-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.about-section .icon {
+    font-size: 40px;
+    color: #ffc107;
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-section h2 {
+        font-size: 1.8rem;
+    }
+    .about-section {
+        padding: 30px 15px;
+    }
+}
+</style>

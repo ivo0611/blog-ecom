@@ -1,0 +1,94 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/1600x900/?technology');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    text-align: center;
+}
+.hero-section .display-3 {
+    font-weight: 700;
+}
+.hero-section .btn-warning {
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+.hero-section .btn-warning:hover {
+    background-color: #ffcc00;
+    color: #000;
+}
+
+/* About Section */
+.about-section {
+    background: #fff;
+    padding: 60px 0;
+}
+.about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.about-section .feature-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+.about-section .feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+.about-section .icon {
+    font-size: 50px;
+    color: #ffc107;
+    margin-bottom: 15px;
+}

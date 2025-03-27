@@ -1,0 +1,76 @@
+.footer {
+    background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+    color: white;
+    font-size: 14px;
+}
+
+.footer h6 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer .nav-item {
+    margin-bottom: 10px;
+}
+
+.footer .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease-in-out;
+}
+
+.footer .nav-link:hover {
+    color: #00aaff;
+    text-decoration: underline;
+}
+
+.footer .horizontal {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer select.form-control {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.footer select.form-control option {
+    background: #1a1a1a;
+    color: white;
+}
+
+.footer .input-group-outline input {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.footer .btn.bg-gradient-info {
+    background: #00aaff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.footer .btn.bg-gradient-info:hover {
+    background: #0088cc;
+}
+
+.footer .btn-icon-only {
+    font-size: 18px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.footer .btn-icon-only:hover {
+    opacity: 1;
+}
