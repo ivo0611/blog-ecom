@@ -58,7 +58,6 @@
     text-align: center; /* Căn giữa chữ */
     font-size: 20px; /* Cỡ chữ lớn hơn */
     font-weight: bold; /* Chữ đậm */
-    margin-top:20px ;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -167,4 +166,19 @@ h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hov
         word-wrap: break-word;
         overflow-wrap: break-word;
     }
+}
+
+.blog-wrapper {
+    background: rgba(42, 42, 42, 0.4); /* Xám than, độ trong suốt 80% */
+    color: #fff; /* Chữ trắng */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Đổ bóng nhẹ */
+}
+
+.blog-wrapper h1 {
+    color: #ffd700; /* Màu vàng gold */
+}
+.breadcrumb-item{
+     text-decoration: none;
 }
