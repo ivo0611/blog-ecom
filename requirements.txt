@@ -36,7 +36,6 @@ telepath==0.3.1
 typing_extensions==4.12.2
 urllib3==2.3.0
 wagtail==6.4.1
-wagtail-ckeditor==1.2.2
 webencodings==0.5.1
 Willow==1.9.0
 xlrd==2.0.1

@@ -105,7 +105,7 @@ DATABASES = {
         'NAME': 'mhdq_db',
         'USER': 'postgres',
         'PASSWORD': 'a#HK.S05/d.itIx@B1i1',
-        'HOST': 'localhost',  # hoặc IP của PostgreSQL Server
+        'HOST': '69.62.72.89',  # hoặc IP của PostgreSQL Server
         'PORT': '5432',       # Cổng mặc định của PostgreSQL
     }
 }

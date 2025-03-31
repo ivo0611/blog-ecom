@@ -7,10 +7,10 @@ from .models import BlogCategory, BlogPage
 
 # Create your views here.
 
-def blog_category(request, category_name):
-    category = BlogCategory.objects.get(name=category_name)
-    posts = category.blog_posts.live()
-    return render(request, "blog/category_list.html", {"category": category, "posts": posts})
+# def blog_category(request, category_name):
+#     category = BlogCategory.objects.get(name=category_name)
+#     posts = category.blog_posts.live()
+#     return render(request, "blog/category_list.html", {"category": category, "posts": posts})
 
 
 def blog_post_view(request, page_id):

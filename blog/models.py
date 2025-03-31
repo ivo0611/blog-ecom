@@ -25,7 +25,7 @@ class BlogPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
         FieldPanel("body"),
-        FieldPanel("categories"),  # ✅ Không cần widget
+        FieldPanel("categories"),
     ]
 
     template = "blog/blog_detail.html"

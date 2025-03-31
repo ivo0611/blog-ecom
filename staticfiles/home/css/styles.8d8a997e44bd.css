@@ -1,0 +1,145 @@
+.list-buttons .button-hre {
+    margin-bottom: 10px;
+}
+
+.list-buttons .button-hre a {
+    text-decoration: none;
+   color: #D4AF37;
+     background: #2C2C2C; ;
+    padding: 6px 0px;
+    width: 100%;
+    display: inline-block;
+       font-family: 'Dancing Script', cursive;
+    font-size: 28px;
+    text-align: center;
+    border-radius: 5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Bóng nhẹ */
+    transition: background 0.3s, transform 0.2s;
+}
+
+.list-buttons .button-hre a:hover, .list-buttons .button-hre a.active {
+     background: #A67C00;
+}
+
+.col-lg-6,
+.card,
+.card-full,
+.hover-a,
+.mb-4,
+.ratio_360-202,
+.image-wrapper,
+.card-body {
+    background: none !important;
+    background-color: transparent !important;
+}
+.col-lg-6,
+.card,
+.card-full,
+.hover-a,
+.mb-4,
+.ratio_360-202,
+.image-wrapper,
+.card-body {
+    border: none !important;
+    box-shadow: none !important;
+}
+.block-title-custom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+     background: linear-gradient(135deg,  #2C2C2C, #5A2D2D);
+    padding: 10px 20px;
+    border-radius: 5px;
+   color: #D4AF37;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+@media (max-width: 672px) {
+.block-title-custom {
+
+    margin-bottom: 5px;
+}
+}
+.block-title-custom h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.block-title-custom h3 span {
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+
+.block-title-custom .viewmore {
+    color: #D4AF37;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.block-title-custom .viewmore:hover {
+    text-decoration: underline;
+}
+.card-title :hover{
+    color: #D4AF37;
+}
+a {
+    text-decoration: none;
+}
+h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a,
+.h1 > a, .h2 > a, .h3 > a, .h4 > a, .h5 > a, .h6 > a {
+  color: black;  /* Màu mặc định */
+  text-decoration: none; /* Xóa gạch chân */
+  transition: color 0.3s ease-in-out; /* Hiệu ứng mượt */
+}
+
+
+h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hover,
+.h1 > a:hover, .h2 > a:hover, .h3 > a:hover, .h4 > a:hover, .h5 > a:hover, .h6 > a:hover {
+  color: yellow; /* Màu vàng khi hover */
+}
+
+.card-body {
+  -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+
+}
+
+.card-title {
+  color: black;
+}
+.card-title:hover{
+    color:yellow;
+}
+.card-body {
+  -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+  padding:  1rem 1rem;
+}
+
+.card-title {
+  margin-bottom:  0.5rem;
+}
+.card-body {
+    max-width: 100%; /* Giữ nội dung trong phạm vi card */
+    overflow: hidden; /* Ẩn phần tràn ra ngoài */
+}
+
+ @media (max-width: 576px) { /* Mobile */
+    .row {
+        display: flex;
+        flex-wrap: wrap; /* Đảm bảo chữ không tràn qua ảnh */
+        align-items: flex-start;
+    }
+    .col-3 {
+        width: 100%; /* Ảnh full chiều ngang */
+        margin-bottom: 8px; /* Tạo khoảng cách giữa ảnh và chữ */
+    }
+    .col-9 {
+        width: 100%; /* Chữ full chiều ngang */
+    }
+    .card-title a {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}

@@ -1,0 +1,29 @@
+.list-tools .tool-it a {
+    color: #fff;
+    background: rgba(207,58,23, 0.6);
+    padding: 6px ;
+    width: 100%;
+    display: inline-block;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.list-tools .tool-it a:hover, .list-tools .tool-it a.active {
+    background: #910101;
+}.list-tools .tool-its a {
+    color: #fff !important;
+    background: rgba(207, 58, 23, 0.6) !important;
+    padding: 6px 4px !important;
+    width: 100% !important;
+    display: inline-block !important;
+    font-size: 18px !important;
+    text-align: center !important;
+    border-radius: 5px ;
+}
+
+.list-tools .tool-it a:hover,
+.list-tools .tool-it a.active {
+    background: #910101 ;
+}
+

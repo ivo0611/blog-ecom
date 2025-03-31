@@ -1,31 +1,61 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}  <!-- Nạp filter richtext -->
-
+{% load static %}
+<title>{% block title %}{{page.title}}{% endblock %}</title>
 {% block content %}
 <div class="container">
-    <div class="row">
-        <!-- Nội dung bài viết -->
-        <div class="col-lg-8">
-            <article class="blog-post">
+    <nav aria-label="breadcrumb">
+        <ol id="w0" class="breadcrumb u-breadcrumb pt-3 px-0 pb-2 mb-3 border-bottom bg-transparent small">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+            </li>
+        </ol>
+    </nav>
+</div>
+<main id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
                 <h1>{{ page.title }}</h1>
-                <p class="text-muted">{{ page.first_published_at }}</p>
-                <p class="created_by">{{page.owner_id}}</p>
-                <p>Categories:
-                    {% for category in page.categories.all %}
-                        <a href="#">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
-                <p>{{ page.intro }}</p>
-                <div class="blog-content">
+                <div class="post-detail">
+                    <div class="blog-content">
                        {{ page.body.html|safe }}
                 </div>
-            </article>
-        </div>
+                </div>
+            </div>
+            <aside class="col-md-4 end-sidebar-lg-2">
+                <div class="sticky"><img class="img-fluid rounded shadow-sm w-100"
+                        src="https://maiduchai.com/wp-content/uploads/2025/01/81ccf380f6f349ad10e2-724x1024.jpg" alt="">
+                    <div id="fb-root" class=" fb_reset">
+                        <div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="block-title-6">
+                            <h4 class="h5 border-primary"><span class="bg-primary text-white">Fanpage</span>
+                            </h4>
+                        </div>
+                    <script async="" defer="" crossorigin="anonymous"
+                        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v17.0"
+                        type="text/javascript"></script>
+                    <div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/maiduchaidaogia"
+                        data-tabs="timeline" data-width="750" data-height="700" data-small-header=""
+                        data-adapt-container-width="1" data-hide-cover="" data-show-facepile="1"
+                        fb-xfbml-state="rendered"
+                        fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=366&amp;height=300&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fmaiduchaidaogia&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=500">
+                        <span style="vertical-align: bottom; width: 366px; height: 300px;"><iframe
+                                name="f95d95fcd8a5333cd" width="500px" height="300px"
+                                data-testid="fb:page Facebook Social Plugin" title="fb:page Facebook Social Plugin"
+                                frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no"
+                                allow="encrypted-media"
+                                src="https://www.facebook.com/v17.0/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df0b859e77814c2050%26domain%3Dmaihoadichquan.vn%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fmaihoadichquan.vn%252Ffb71b92e8baf81c41%26relation%3Dparent.parent&amp;container_width=366&amp;height=300&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fmaiduchaidaogia&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=500"
+                                style="border: none; visibility: visible; width: 366px; height: 300px;"
+                                class=""></iframe></span></div>
 
-        <!-- Sidebar -->
-        <div class="col-lg-4">
-            {% include 'home/layout/sidebar.html' %}
+
+                </div>
+            </aside>
         </div>
     </div>
-</div>
+</main>
 {% endblock %}
