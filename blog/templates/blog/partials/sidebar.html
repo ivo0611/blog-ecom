@@ -1,0 +1,106 @@
+<div class="sidebar">
+    <div class="sticky">
+
+        <!-- Search Widget -->
+        <div class="card mb-4">
+            <div class="card-header">Tìm kiếm</div>
+            <div class="card-body">
+                <form method="get" action="/search/">
+                    <div class="input-group">
+                        <input type="text" name="query" class="form-control" placeholder="Nhập từ khóa...">
+                        <button class="btn btn-primary" type="submit">Tìm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Latest Posts -->
+        <div class="card mb-4">
+            <div class="card-header">Bài viết mới</div>
+            <ul class="list-group list-group-flush">
+                {% for post in latest_posts %}
+                <li class="list-group-item d-flex">
+                    {% if post.thumbnail %}
+                    <img src="{{ post.thumbnail.file.url }}" alt="{{ post.title }}"
+                         class="me-3" style="width: 90px; height: 60px; object-fit: cover; border-radius: 6px;">
+                    {% endif %}
+                    <div class="flex-grow-1">
+                        <a href="{{ post.url }}" class="text-decoration-none text-dark" style="
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.4;
+        ">
+                            {{ post.title }}
+                        </a>
+                        <div style="font-size: 0.8rem; color: #666; margin-top: 2px;">
+                             Ngày đăng: {{ post.first_published_at|date:"d/m/Y" }}
+                        </div>
+                    </div>
+                </li>
+
+                {% empty %}
+                <li class="list-group-item">Chưa có bài viết nào.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <!-- Categories -->
+        <div class="card mb-4">
+            <div class="card-header">Danh mục</div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="/tai-lieu-bat-tu">Bát Tự Mệnh Lý</a></li>
+                <li class="list-group-item"><a href="/tai-lieu-phong-thuy/">Phong Thủy</a></li>
+                <li class="list-group-item"><a href="/tai-lieu-co-nhan/">Đạo Lý Cổ Nhân</a></li>
+                <li class="list-group-item"><a href="/tai-lieu-mai-hoa/">
+Quẻ Mai Hoa
+</a></li>
+                <li class="list-group-item"><a href="/tai-lieu-ngu-hanh/">
+Ngũ Hành
+</a></li>
+            </ul>
+        </div>
+
+        <!-- Popular Tags -->
+        <div class="card mb-4">
+            <div class="card-header">Thẻ phổ biến</div>
+            <div class="card-body">
+                <a href="#" class="badge bg-secondary text-white me-1 mb-1">bát tự</a>
+                <a href="#" class="badge bg-secondary text-white me-1 mb-1">ngũ hành</a>
+                <a href="#" class="badge bg-secondary text-white me-1 mb-1">tứ trụ</a>
+                <a href="#" class="badge bg-secondary text-white me-1 mb-1">tài vận</a>
+                <a href="#" class="badge bg-secondary text-white me-1 mb-1">tử vi</a>
+            </div>
+        </div>
+
+        <!-- Facebook Section -->
+        <div class="social-section">
+            <div class="block-title-custom-z"> Theo dõi chúng tôi trên Fanpage</div>
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous"
+                    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+            <div class="fb-page"
+                 data-href="https://www.facebook.com/maihoadichquan/"
+                 data-tabs="timeline"
+                 data-width="500"
+                 data-height="400"
+                 data-adapt-container-width="true"
+                 data-hide-cover="false"
+                 data-show-facepile="true">
+            </div>
+        </div>
+
+    </div>
+</div>
+<style>
+@media (max-width: 576px) {
+    .sidebar .latest-post-thumbnail {
+        width: 120px !important;
+        height: 80px !important;
+    }
+}
+</style>

@@ -1,72 +1,47 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}  <!-- Nạp filter richtext -->
 {% load static %}
+{% load blog_post_tags %}
 <title>{% block title %}{{page.title}}{% endblock %}</title>
 {% block content %}
+    {% if page %}
 <div class="container">
     <nav aria-label="breadcrumb">
-    <ol id="w0" class="breadcrumb u-breadcrumb pt-3 px-0 pb-2 mb-3 border-bottom bg-transparent small">
-        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
-    </ol>
-</nav>
+        <ol id="w0" class="breadcrumb u-breadcrumb pt-3 px-0 pb-2 mb-3 border-bottom bg-transparent small">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+        </ol>
+    </nav>
 </div>
 <main id="content">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-12">
-                 <div class="blog-wrapper">
-                <h1>{{ page.title }}</h1>
-                <div class="post-detail">
-                    <div class="blog-content">
-                       {{ page.body.html|safe }}
+            <div class="col-lg-9 col-md-12">
+
+                {% if  page.thumbnail.file.url %}
+                <img src=" {{page.thumbnail.file.url }}" class="img-fluid" style="max-height: 800px;">
+                {% endif %}
+
+                <div class="blog-wrapper">
+
+                    <div class="post-detail">
+                         <h1 class="post-title">{{ page.title }}</h1>
+                    <div class="post-meta">
+                        <span class="date">Ngày đăng : {{ page.first_published_at|date:"d/m/Y" }}</span>
+                    </div>
+                        <p class="post-description">{{ page.search_description }}</p>
+                        <div class="blog-content">
+                            {{ page.body.html|safe }}
+                        </div>
+                    </div>
                 </div>
-                </div>
-                     </div>
             </div>
-            <aside class="col-md-4 end-sidebar-lg-2">
-    <div class="sticky">
-    <img class="img-fluid rounded shadow-sm w-100" src="https://img.freepik.com/free-photo/50th-birthday-arrangement-with-cake-cooking-ingredients_23-2149117985.jpg" alt="Mai Hoa Dịch Quán">
-
-    <!-- Facebook Section -->
-    <div class="social-section">
-        <div class="block-title-custom-z"> Theo dõi chúng tôi trên Fanpage</div>
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
-        <div class="fb-page"
-             data-href="https://www.facebook.com/maihoadichquan/"
-             data-tabs="timeline"
-             data-width="500"
-             data-height="800"
-             data-adapt-container-width="true"
-             data-hide-cover="false"
-             data-show-facepile="true">
-        </div>
-    </div>
-
-    <!-- TikTok Section -->
-    <div class="social-section">
-        <div class="block-title-custom-z"> Xem video mới nhất trên TikTok</div>
-        <blockquote class="tiktok-embed"
-                    cite="https://www.tiktok.com/@maihoadichquan/video/7418935054715456775"
-                    data-video-id="7418935054715456775"
-                    style="max-width: 500px; min-width: 325px;">
-            <section>
-                <a target="_blank" title="Mai Hoa Dịch Quán" href="https://www.tiktok.com/@maihoadichquan">
-                    @maihoadichquan
-                </a>
-            </section>
-        </blockquote>
-        <script async src="https://www.tiktok.com/embed.js"></script>
-    </div>
-</div>
-
-</aside>
+            <aside class="col-md-3 end-sidebar-lg-2">
+  {% render_sidebar %}
+            </aside>
 
         </div>
     </div>
 </main>
+   {% endif %}
 {% endblock %}
-<style>
-
-</style>

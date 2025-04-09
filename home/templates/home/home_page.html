@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load wagtailimages_tags %}
 {% block title %}Mai Hoa Dịch Quán{% endblock %}
 
 {% block content %}
@@ -7,1124 +8,480 @@
     <div class="container mt-3 mb-3">
         <div class="home-form ">
             <div class="row">
-                <img src="/static/assets/img/demo.jpg" alt="Logo" class="img-fluid" style="max-height: 800px;">
+                <img src="/static/assets/img/demo2.jpg" alt="Logo" class="img-fluid" style="max-height: 800px;">
             </div>
             <div class="list-buttons row col-mar-5 mt-2">
-                <div class="col-lg-f20 col-sm-4 col-6">
-                    <div class="button-hre"><a class="" href="/la-so-bat-tu/"><span>Bát tự</span></a>
-                    </div>
+
+                <div class="button-hre col-lg-f20 col-sm-4 col-6 px-2">
+                    <a class="" href="#bat-tu-menh-ly"><span>Tài Liệu Mệnh Lý</span></a>
                 </div>
-                <div class="col-lg-f20 col-sm-4 col-6">
-                    <div class="button-hre"><a class="" href="/phong-thuy/"><span>Phong thủy</span></a></div>
+
+                <div class="button-hre col-lg-f20 col-sm-4 col-6 px-2">
+                    <a class="" href="#phong-thuy-dia-ly"><span>Tài Liệu Phong Thủy</span></a>
                 </div>
-                <div class="col-lg-f20 col-sm-4 col-6">
-                    <div class="button-hre"><a class="" href="/dao-li-co-nhan/"><span>Đạo lý cổ nhân</span></a></div>
+                <div class="button-hre col-lg-f20 col-sm-4 col-6 px-2">
+                    <a class="" href="#dao-ly-co-nhan"><span>Tài Liệu Cổ Nhân</span></a>
                 </div>
-                <div class="col-lg-f20 col-sm-4 col-6">
-                    <div class="button-hre"><a class="" href="/kinh-dich/"><span>Kinh dịch</span></a>
-                    </div>
+                <div class="button-hre col-lg-f20 col-sm-4 col-6 px-2">
+                    <a class="" href="#kinh-dich-mai-hoa"><span>Tài Liệu Mai Hoa</span></a>
                 </div>
-                <div class="col-lg-f20 col-sm-4 col-6">
-                    <div class="button-hre"><a class="" href="/vat-pham-phong-thuy/"><span>Vật phẩm</span></a></div>
+                <div class="button-hre col-lg-f20 col-sm-4 col-6 px-2">
+                    <a class="" href="#vat-pham-phong-thuy"><span>Tài Liệu Ngũ Hành</span></a>
                 </div>
-                <div class="col-lg-f20 col-sm-4 col-6">
-                    <div class="button-hre"><a class="" href="/gioi-thieu/"><span>Giới thiệu</span></a></div>
+                <div class="col-lg-f20 col-sm-4 col-6 px-2">
+                    <div class="button-hre"><a class="" href="/gioi-thieu/"><span>Dịch Vụ</span></a></div>
                 </div>
 
             </div>
+
+            <div class="list-buttons row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-3 mt-3 text-center">
+
+                <!-- Button mẫu dùng lại -->
+                <div class="col">
+                    <a href="#bat-tu-menh-ly" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#phong-thuy-dia-ly" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2942/2942861.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#dao-ly-co-nhan" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#kinh-dich-mai-hoa" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3940/3940057.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#vat-pham-phong-thuy" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3534/3534068.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="/gioi-thieu/" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4280/4280792.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#lich-van-nien" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#xem-tuoi" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3448/3448334.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#chon-ngay" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077976.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#hoa-giai" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#menh-ngu-hanh" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3059/3059384.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#tu-vi" class="btn-icon d-block">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1950/1950715.png" alt="icon"
+                             class="img-fluid img-button mx-auto">
+
+                    </a>
+                </div>
+
+            </div>
+
+
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md-8">
+                {% block m_content %}
+               <div class="blog-area py-4">
+
+  <div class="mb-4 text-center px-3">
+    <h2 class="fw-bold text-dark text-primary mb-2">Bát Tự Phong Thủy</h2>
+    <p class="text-dark fw-medium mb-2">
+      Bát tự là phương pháp giải mã tổ hợp của 8 chữ thiên can địa chi.
+      Mặc dù chỉ có 8 chữ nhưng có thể hợp thành 500.000 mệnh cục, lại do sự khác biệt khi luận đoán.
+    </p>
+  </div>
+
+  <div class="row text-center gx-2 gy-3">
+    <div class="col-md-4">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/HeimerLockh%C3%BCtte%281805%29-%28800x500%29.jpg"
+           class="img-fluid rounded shadow-sm" alt="Ảnh 1">
+    </div>
+    <div class="col-md-4">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/HeimerLockh%C3%BCtte%281805%29-%28800x500%29.jpg"
+           class="img-fluid rounded shadow-sm" alt="Ảnh 2">
+    </div>
+    <div class="col-md-4">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/HeimerLockh%C3%BCtte%281805%29-%28800x500%29.jpg"
+           class="img-fluid rounded shadow-sm" alt="Ảnh 3">
+    </div>
+  </div>
+
+</div>
+
+
+                {% endblock %}
                 <div class="blog-area">
                     <div class="block-title-custom">
-                        <h3><span>Bát Tự Mệnh Lý</span></h3>
-                        <a class="viewmore" href="/bat-tu/" title="Xem thêm Bát tự">Xem thêm</a>
+                        <h3 id="phong-thuy-dia-ly"><span>Tài Liệu Phong Thủy</span></h3>
                     </div>
 
                     <div class="row">
+                        {% if phong_thuy_posts %}
                         <div class="col-lg-6">
+                            {% with first_post=phong_thuy_posts.0 %}
                             <article class="card card-full hover-a mb-4">
                                 <div class="ratio_360-202 image-wrapper">
-                                    <a href="/"
-                                       title="">
+                                    <a href="{{ first_post.post.url }}" title="{{ first_post.post.title }}">
+                                        {% if first_post.image_url %}
                                         <img width="390" height="220"
-                                             src="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg"
-                                             class="img-fluid w-80 attachment-390x220 size-390x220 ls-is-cached lazyloaded"
-                                             alt=""
-                                             data-src="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg"
-                                             data-srcset="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 390w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 125w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 1200w"
-                                             data-sizes="(max-width: 1200px) 100vw, 1200px"
-                                             sizes="(max-width: 1200px) 100vw, 1200px"
-                                             srcset="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 390w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 125w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 1200w">
+                                             src="{{ first_post.image_url }}"
+                                             class="img-fluid w-80 attachment-390x220 size-390x220 lazyloaded"
+                                             alt="{{ first_post.post.title }}">
+                                        {% endif %}
                                     </a>
                                 </div>
                                 <div class="card-body">
                                     <h2 class="card-title h1-sm h3-lg">
-                                        <a href="/"
-                                           title="">Mèo là loài động vật thông minh, nhanh nhẹn và đáng yêu</a>
+                                        <a href="{{ first_post.post.url }}" title="{{ first_post.post.title }}">{{
+                                            first_post.post.title }}</a>
                                     </h2>
                                     <div class="card-text mb-2 text-muted small">
-                                        <time datetime="31/03/2025 04:57">31/03/2025 04:57</time>
+                                        <time datetime="{{ first_post.post.first_published_at|date:'Y-m-d H:i' }}">
+                                            {{ first_post.post.first_published_at|date:'d/m/Y H:i' }}
+                                        </time>
                                     </div>
-                                    <p class="card-text line-clamp-3">Mèo là loài động vật thông minh, nhanh nhẹn và
-                                        đáng yêu.
-                                        Chúng có bản tính độc lập nhưng cũng rất quấn chủ khi được yêu thương.
-                                        Mèo giúp con người thư giãn nhờ những tiếng kêu "meo meo" dễ thương và bộ lông
-                                        mềm mại.
-                                        Ngoài ra, chúng còn là những thợ săn chuột tài ba, góp phần giữ gìn nhà cửa sạch
-                                        sẽ.</p>
+                                    <p class="card-text line-clamp-3">{{ first_post.post.search_description}}</p>
                                 </div>
                             </article>
+                            {% endwith %}
                         </div>
+
                         <div class="col-lg-6">
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper"><a href="//"
-                                                                                   title=""><img
-                                                width="125" height="80"
-                                                src="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg"
-                                                class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                alt="Loai meo vo dich thien ha"
-                                                data-src="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg"
-                                                data-srcset="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 100w, https://thanglongdaoquan.vn/wp-content/uploads/Co-than-Qua-tu-la-2-hung-tinh-510x321.png 510w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 247w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 420w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 768w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 900w"
-                                                data-sizes="(max-width: 900px) 100vw, 900px"
-                                                sizes="(max-width: 900px) 100vw, 900px"
-                                                srcset="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 100w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 510w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 247w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 420w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 768w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 900w"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a
-                                                    href="/"
-                                                    title="">Loài vật nuôi hiền lành - Thân thiện con người</a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 02:51">31/03/2025 02:51
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper"><a href="/"
-                                                                                   title=""><img
-                                                width="125" height="80"
-                                                src="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg"
-                                                class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                alt=""
-                                                data-src="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg"
-                                                data-srcset="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 100w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 510w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 247w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 420w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 768w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 900w"
-                                                data-sizes="(max-width: 900px) 100vw, 900px"
-                                                sizes="(max-width: 900px) 100vw, 900px"
-                                                srcset="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 100w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 510w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 247w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 420w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 768w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 900w"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a href="/"
-                                                                                     title="">Bí mật lớn nhất về lịch sử
-                                                loài mèo - Họ hàng loài hổ lanh kiếm?
-                                            </a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 04:51">31/03/2025 04:51
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
+                            {% for post in phong_thuy_posts|slice:"1:" %}
                             <article class="card card-full hover-a mb-4">
                                 <div class="row">
                                     <div class="col-3 col-md-4 pe-2 pe-md-0">
                                         <div class="ratio_115-80 image-wrapper">
-                                            <a href="/" title="">
+                                            <a href="{{ post.post.url }}" title="{{ post.post.title }}">
+                                                {% if post.image_url %}
                                                 <img width="125" height="80"
-                                                     src="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg"
+                                                     src="{{ post.image_url }}"
                                                      class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                     alt=""
-                                                     data-src="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg"
-                                                     data-srcset="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 100w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 510w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 247w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 420w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 768w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 900w"
-                                                     data-sizes="(max-width: 900px) 100vw, 900px"
-                                                     sizes="(max-width: 900px) 100vw, 900px"
-                                                     srcset="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 100w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 510w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 247w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 420w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 768w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 900w">
+                                                     alt="{{ post.post.title }}">
+                                                {% endif %}
                                             </a>
                                         </div>
                                     </div>
-
                                     <div class="col-9 col-md-8">
                                         <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a href="/"
-                                                                                     title="">Lười biếng ban ngày, chăm
-                                                chỉ về đêm - Sự lười biếng có phần thú vị!</a></h3>
+                                            <h3 class="card-title h6 h5-sm h6-lg">
+                                                <a href="{{ post.post.url }}" title="{{ post.post.title }}">{{
+                                                    post.post.title }}</a>
+                                            </h3>
                                             <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 07:54">31/03/2025 07:54
+                                                <time datetime="{{ post.post.first_published_at|date:'Y-m-d H:i' }}">
+                                                    {{ post.post.first_published_at|date:'d/m/Y H:i' }}
                                                 </time>
                                             </div>
+                                            <p class="card-text line-clamp-3">{{post.post.search_description}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/vong-than/" title="Top 10 loài mèo đáng yêu nhất">
-                                                <img width="125" height="80"
-                                                     src="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 ls-is-cached lazyloaded"
-                                                     alt="Top 10 loài mèo đáng yêu nhất"
-                                                     data-src="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg"
-                                                     data-srcset="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 100w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 510w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 247w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 420w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 736w"
-                                                     data-sizes="(max-width: 736px) 100vw, 736px"
-                                                     sizes="(max-width: 736px) 100vw, 736px"
-                                                     srcset="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 100w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 510w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 247w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 420w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 736w">
-                                            </a>
-                                        </div>
-                                    </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-12 text-center">
+                            <a href="/tai-lieu-phong-thuy" class="btn btn-primary">Xem thêm</a>
+                        </div>
+                        {% else %}
+                        <p>Chưa có bài viết nào trong danh mục này.</p>
+                        {% endif %}
+                    </div>
 
-                                    <div class="col-9 col-md-8 ">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg">
-                                                <a href="/vong-than/" title="Top 10 loài mèo đáng yêu nhất">Top 10 loài
-                                                    mèo đáng yêu nhất</a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time datetime="04/08/2023 02:11">31/03/2025 03:11</time>
-                                            </div>
-                                        </div>
+                </div>
+                <div class="blog-area">
+                    <div class="block-title-custom">
+                        <h3 id="dao-ly-co-nhan"><span>Tài Liệu Đạo Xưa</span></h3>
+                    </div>
+
+                    <div class="row">
+                        {% if dao_ly_co_nhan_posts %}
+                        <div class="col-lg-6">
+                            {% with first_post=dao_ly_co_nhan_posts.0 %}
+                            <article class="card card-full hover-a mb-4">
+                                <div class="ratio_360-202 image-wrapper">
+                                    <a href="{{ first_post.post.url }}" title="{{ first_post.post.title }}">
+                                        {% if first_post.image_url %}
+                                        <img width="390" height="220"
+                                             src="{{ first_post.image_url }}"
+                                             class="img-fluid w-80 attachment-390x220 size-390x220 lazyloaded"
+                                             alt="{{ first_post.post.title }}">
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h2 class="card-title h1-sm h3-lg">
+                                        <a href="{{ first_post.post.url }}" title="{{ first_post.post.title }}">{{
+                                            first_post.post.title }}</a>
+                                    </h2>
+                                    <div class="card-text mb-2 text-muted small">
+                                        <time datetime="{{ first_post.post.first_published_at|date:'Y-m-d H:i' }}">
+                                            {{ first_post.post.first_published_at|date:'d/m/Y H:i' }}
+                                        </time>
                                     </div>
+                                    <p class="card-text line-clamp-3">{{ first_post.post.search_description}}</p>
                                 </div>
                             </article>
+                            {% endwith %}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {% for post in dao_ly_co_nhan_posts|slice:"1:" %}
                             <article class="card card-full hover-a mb-4">
                                 <div class="row">
                                     <div class="col-3 col-md-4 pe-2 pe-md-0">
                                         <div class="ratio_115-80 image-wrapper">
-                                            <a href="/vong-than/"
-                                               title="Mèo là món quà của thượng đế ban tặng loài người">
+                                            <a href="{{ post.post.url }}" title="{{ post.post.title }}">
+                                                {% if post.image_url %}
                                                 <img width="125" height="80"
-                                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUcrU3gAtnEH4yT1Z0sLB2HAbOZty3CW05Yg&s"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 ls-is-cached lazyloaded"
-                                                     alt="Mèo là món quà của thượng đế ban tặng loài người">
+                                                     src="{{ post.image_url }}"
+                                                     class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
+                                                     alt="{{ post.post.title }}">
+                                                {% endif %}
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col-9 col-md-8">
                                         <div class="card-body pt-0">
                                             <h3 class="card-title h6 h5-sm h6-lg">
-                                                <a href="/vong-than/"
-                                                   title="Mèo là món quà của thượng đế ban tặng loài người">
-                                                    Mèo là món quà của thượng đế ban tặng loài người
-                                                </a>
+                                                <a href="{{ post.post.url }}" title="{{ post.post.title }}">{{
+                                                    post.post.title }}</a>
                                             </h3>
                                             <div class="card-text small text-muted">
-                                                <time datetime="31/03/2025 02:11">31/03/2025 02:11</time>
+                                                <time datetime="{{ post.post.first_published_at|date:'Y-m-d H:i' }}">
+                                                    {{ post.post.first_published_at|date:'d/m/Y H:i' }}
+                                                </time>
                                             </div>
+                                            <p class="card-text line-clamp-3">{{post.post.search_description}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </article>
-
+                            {% endfor %}
                         </div>
+                        <div class="col-12 text-center">
+                            <a href="/tai-lieu-co-nhan" class="btn btn-primary">Xem thêm</a>
+                        </div>
+                        {% else %}
+                        <p>Chưa có bài viết nào trong danh mục này.</p>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="blog-area">
                     <div class="block-title-custom">
-                        <h3><span>Phong Thuỷ Địa Lý</span></h3>
-                        <a class="viewmore" href="/bat-tu/" title="Xem thêm Bát tự">Xem thêm</a>
+                        <h3 id="kinh-dich-mai-hoa"><span>Tài Liệu Mai Hoa</span></h3>
                     </div>
 
                     <div class="row">
+                        {% if que_mai_hoa_posts %}
                         <div class="col-lg-6">
+                            {% with first_post=que_mai_hoa_posts.0 %}
                             <article class="card card-full hover-a mb-4">
                                 <div class="ratio_360-202 image-wrapper">
-                                    <a href="/"
-                                       title="">
+                                    <a href="{{ first_post.post.url }}" title="{{ first_post.post.title }}">
+                                        {% if first_post.image_url %}
                                         <img width="390" height="220"
-                                             src="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg"
-                                             class="img-fluid w-80 attachment-390x220 size-390x220 ls-is-cached lazyloaded"
-                                             alt=""
-                                             data-src="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg"
-                                             data-srcset="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 390w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 125w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 1200w"
-                                             data-sizes="(max-width: 1200px) 100vw, 1200px"
-                                             sizes="(max-width: 1200px) 100vw, 1200px"
-                                             srcset="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 390w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 125w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 1200w">
+                                             src="{{ first_post.image_url }}"
+                                             class="img-fluid w-80 attachment-390x220 size-390x220 lazyloaded"
+                                             alt="{{ first_post.post.title }}">
+                                        {% endif %}
                                     </a>
                                 </div>
                                 <div class="card-body">
                                     <h2 class="card-title h1-sm h3-lg">
-                                        <a href="/"
-                                           title="">Mèo là loài động vật thông minh, nhanh nhẹn và đáng yêu</a>
+                                        <a href="{{ first_post.post.url }}" title="{{ first_post.post.title }}">{{
+                                            first_post.post.title }}</a>
                                     </h2>
                                     <div class="card-text mb-2 text-muted small">
-                                        <time datetime="31/03/2025 04:57">31/03/2025 04:57</time>
+                                        <time datetime="{{ first_post.post.first_published_at|date:'Y-m-d H:i' }}">
+                                            {{ first_post.post.first_published_at|date:'d/m/Y H:i' }}
+                                        </time>
                                     </div>
-                                    <p class="card-text line-clamp-3">Mèo là loài động vật thông minh, nhanh nhẹn và
-                                        đáng yêu.
-                                        Chúng có bản tính độc lập nhưng cũng rất quấn chủ khi được yêu thương.
-                                        Mèo giúp con người thư giãn nhờ những tiếng kêu "meo meo" dễ thương và bộ lông
-                                        mềm mại.
-                                        Ngoài ra, chúng còn là những thợ săn chuột tài ba, góp phần giữ gìn nhà cửa sạch
-                                        sẽ.</p>
+                                    <p class="card-text line-clamp-3">{{ first_post.post.search_description}}</p>
                                 </div>
                             </article>
+                            {% endwith %}
                         </div>
+
                         <div class="col-lg-6">
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper"><a href="//"
-                                                                                   title=""><img
-                                                width="125" height="80"
-                                                src="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg"
-                                                class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                alt="Loai meo vo dich thien ha"
-                                                data-src="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg"
-                                                data-srcset="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 100w, https://thanglongdaoquan.vn/wp-content/uploads/Co-than-Qua-tu-la-2-hung-tinh-510x321.png 510w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 247w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 420w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 768w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 900w"
-                                                data-sizes="(max-width: 900px) 100vw, 900px"
-                                                sizes="(max-width: 900px) 100vw, 900px"
-                                                srcset="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 100w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 510w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 247w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 420w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 768w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 900w"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a
-                                                    href="/"
-                                                    title="">Loài vật nuôi hiền lành - Thân thiện con người</a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 02:51">31/03/2025 02:51
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper"><a href="/"
-                                                                                   title=""><img
-                                                width="125" height="80"
-                                                src="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg"
-                                                class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                alt=""
-                                                data-src="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg"
-                                                data-srcset="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 100w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 510w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 247w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 420w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 768w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 900w"
-                                                data-sizes="(max-width: 900px) 100vw, 900px"
-                                                sizes="(max-width: 900px) 100vw, 900px"
-                                                srcset="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 100w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 510w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 247w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 420w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 768w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 900w"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a href="/"
-                                                                                     title="">Bí mật lớn nhất về lịch sử
-                                                loài mèo - Họ hàng loài hổ lanh kiếm?
-                                            </a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 04:51">31/03/2025 04:51
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
+                            {% for post in que_mai_hoa_posts|slice:"1:" %}
                             <article class="card card-full hover-a mb-4">
                                 <div class="row">
                                     <div class="col-3 col-md-4 pe-2 pe-md-0">
                                         <div class="ratio_115-80 image-wrapper">
-                                            <a href="/" title="">
+                                            <a href="{{ post.post.url }}" title="{{ post.post.title }}">
+                                                {% if post.image_url %}
                                                 <img width="125" height="80"
-                                                     src="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg"
+                                                     src="{{ post.image_url }}"
                                                      class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                     alt=""
-                                                     data-src="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg"
-                                                     data-srcset="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 100w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 510w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 247w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 420w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 768w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 900w"
-                                                     data-sizes="(max-width: 900px) 100vw, 900px"
-                                                     sizes="(max-width: 900px) 100vw, 900px"
-                                                     srcset="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 100w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 510w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 247w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 420w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 768w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 900w">
+                                                     alt="{{ post.post.title }}">
+                                                {% endif %}
                                             </a>
                                         </div>
                                     </div>
-
                                     <div class="col-9 col-md-8">
                                         <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a href="/"
-                                                                                     title="">Lười biếng ban ngày, chăm
-                                                chỉ về đêm - Sự lười biếng có phần thú vị!</a></h3>
+                                            <h3 class="card-title h6 h5-sm h6-lg">
+                                                <a href="{{ post.post.url }}" title="{{ post.post.title }}">{{
+                                                    post.post.title }}</a>
+                                            </h3>
                                             <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 07:54">31/03/2025 07:54
+                                                <time datetime="{{ post.post.first_published_at|date:'Y-m-d H:i' }}">
+                                                    {{ post.post.first_published_at|date:'d/m/Y H:i' }}
                                                 </time>
                                             </div>
+                                            <p class="card-text line-clamp-3">{{post.post.search_description}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/vong-than/" title="Top 10 loài mèo đáng yêu nhất">
-                                                <img width="125" height="80"
-                                                     src="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 ls-is-cached lazyloaded"
-                                                     alt="Top 10 loài mèo đáng yêu nhất"
-                                                     data-src="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg"
-                                                     data-srcset="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 100w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 510w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 247w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 420w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 736w"
-                                                     data-sizes="(max-width: 736px) 100vw, 736px"
-                                                     sizes="(max-width: 736px) 100vw, 736px"
-                                                     srcset="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 100w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 510w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 247w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 420w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 736w">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-9 col-md-8 ">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg">
-                                                <a href="/vong-than/" title="Top 10 loài mèo đáng yêu nhất">Top 10 loài
-                                                    mèo đáng yêu nhất</a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time datetime="04/08/2023 02:11">31/03/2025 03:11</time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/vong-than/"
-                                               title="Mèo là món quà của thượng đế ban tặng loài người">
-                                                <img width="125" height="80"
-                                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUcrU3gAtnEH4yT1Z0sLB2HAbOZty3CW05Yg&s"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 ls-is-cached lazyloaded"
-                                                     alt="Mèo là món quà của thượng đế ban tặng loài người">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg">
-                                                <a href="/vong-than/"
-                                                   title="Mèo là món quà của thượng đế ban tặng loài người">
-                                                    Mèo là món quà của thượng đế ban tặng loài người
-                                                </a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time datetime="31/03/2025 02:11">31/03/2025 02:11</time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
+                            {% endfor %}
                         </div>
+                        <div class="col-12 text-center">
+                            <a href="/tai-lieu-mai-hoa" class="btn btn-primary">Xem thêm</a>
+                        </div>
+                        {% else %}
+                        <p>Chưa có bài viết nào trong danh mục này.</p>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="blog-area">
                     <div class="block-title-custom">
-                        <h3><span>Đạo Lý Cổ Nhân</span></h3>
-                        <a class="viewmore" href="/bat-tu/" title="Xem thêm Bát tự">Xem thêm</a>
+                        <h3 id="vat-pham-phong-thuy"><span>Tài Liệu Ngũ Hành</span></h3>
                     </div>
 
                     <div class="row">
+                        {% if vat_pham_posts %}
                         <div class="col-lg-6">
+                            {% with first_post=vat_pham_posts.0 %}
                             <article class="card card-full hover-a mb-4">
                                 <div class="ratio_360-202 image-wrapper">
-                                    <a href="/"
-                                       title="">
+                                    <a href="{{ first_post.post.url }}" title="{{ first_post.post.title }}">
+                                        {% if first_post.image_url %}
                                         <img width="390" height="220"
-                                             src="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg"
-                                             class="img-fluid w-80 attachment-390x220 size-390x220 ls-is-cached lazyloaded"
-                                             alt=""
-                                             data-src="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg"
-                                             data-srcset="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 390w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 125w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 1200w"
-                                             data-sizes="(max-width: 1200px) 100vw, 1200px"
-                                             sizes="(max-width: 1200px) 100vw, 1200px"
-                                             srcset="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 390w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 125w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 1200w">
+                                             src="{{ first_post.image_url }}"
+                                             class="img-fluid w-80 attachment-390x220 size-390x220 lazyloaded"
+                                             alt="{{ first_post.post.title }}">
+                                        {% endif %}
                                     </a>
                                 </div>
                                 <div class="card-body">
                                     <h2 class="card-title h1-sm h3-lg">
-                                        <a href="/"
-                                           title="">Mèo là loài động vật thông minh, nhanh nhẹn và đáng yêu</a>
+                                        <a href="{{ first_post.post.url }}" title="{{ first_post.post.title }}">{{
+                                            first_post.post.title }}</a>
                                     </h2>
                                     <div class="card-text mb-2 text-muted small">
-                                        <time datetime="31/03/2025 04:57">31/03/2025 04:57</time>
+                                        <time datetime="{{ first_post.post.first_published_at|date:'Y-m-d H:i' }}">
+                                            {{ first_post.post.first_published_at|date:'d/m/Y H:i' }}
+                                        </time>
                                     </div>
-                                    <p class="card-text line-clamp-3">Mèo là loài động vật thông minh, nhanh nhẹn và
-                                        đáng yêu.
-                                        Chúng có bản tính độc lập nhưng cũng rất quấn chủ khi được yêu thương.
-                                        Mèo giúp con người thư giãn nhờ những tiếng kêu "meo meo" dễ thương và bộ lông
-                                        mềm mại.
-                                        Ngoài ra, chúng còn là những thợ săn chuột tài ba, góp phần giữ gìn nhà cửa sạch
-                                        sẽ.</p>
+                                    <p class="card-text line-clamp-3">{{ first_post.post.search_description}}</p>
                                 </div>
                             </article>
+                            {% endwith %}
                         </div>
+
                         <div class="col-lg-6">
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper"><a href="//"
-                                                                                   title=""><img
-                                                width="125" height="80"
-                                                src="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg"
-                                                class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                alt="Loai meo vo dich thien ha"
-                                                data-src="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg"
-                                                data-srcset="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 100w, https://thanglongdaoquan.vn/wp-content/uploads/Co-than-Qua-tu-la-2-hung-tinh-510x321.png 510w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 247w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 420w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 768w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 900w"
-                                                data-sizes="(max-width: 900px) 100vw, 900px"
-                                                sizes="(max-width: 900px) 100vw, 900px"
-                                                srcset="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 100w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 510w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 247w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 420w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 768w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 900w"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a
-                                                    href="/"
-                                                    title="">Loài vật nuôi hiền lành - Thân thiện con người</a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 02:51">31/03/2025 02:51
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper"><a href="/"
-                                                                                   title=""><img
-                                                width="125" height="80"
-                                                src="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg"
-                                                class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                alt=""
-                                                data-src="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg"
-                                                data-srcset="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 100w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 510w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 247w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 420w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 768w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 900w"
-                                                data-sizes="(max-width: 900px) 100vw, 900px"
-                                                sizes="(max-width: 900px) 100vw, 900px"
-                                                srcset="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 100w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 510w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 247w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 420w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 768w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 900w"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a href="/"
-                                                                                     title="">Bí mật lớn nhất về lịch sử
-                                                loài mèo - Họ hàng loài hổ lanh kiếm?
-                                            </a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 04:51">31/03/2025 04:51
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
+                            {% for post in vat_pham_posts|slice:"1:" %}
                             <article class="card card-full hover-a mb-4">
                                 <div class="row">
                                     <div class="col-3 col-md-4 pe-2 pe-md-0">
                                         <div class="ratio_115-80 image-wrapper">
-                                            <a href="/" title="">
+                                            <a href="{{ post.post.url }}" title="{{ post.post.title }}">
+                                                {% if post.image_url %}
                                                 <img width="125" height="80"
-                                                     src="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg"
+                                                     src="{{ post.image_url }}"
                                                      class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                     alt=""
-                                                     data-src="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg"
-                                                     data-srcset="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 100w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 510w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 247w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 420w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 768w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 900w"
-                                                     data-sizes="(max-width: 900px) 100vw, 900px"
-                                                     sizes="(max-width: 900px) 100vw, 900px"
-                                                     srcset="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 100w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 510w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 247w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 420w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 768w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 900w">
+                                                     alt="{{ post.post.title }}">
+                                                {% endif %}
                                             </a>
                                         </div>
                                     </div>
-
                                     <div class="col-9 col-md-8">
                                         <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a href="/"
-                                                                                     title="">Lười biếng ban ngày, chăm
-                                                chỉ về đêm - Sự lười biếng có phần thú vị!</a></h3>
+                                            <h3 class="card-title h6 h5-sm h6-lg">
+                                                <a href="{{ post.post.url }}" title="{{ post.post.title }}">{{
+                                                    post.post.title }}</a>
+                                            </h3>
                                             <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 07:54">31/03/2025 07:54
+                                                <time datetime="{{ post.post.first_published_at|date:'Y-m-d H:i' }}">
+                                                    {{ post.post.first_published_at|date:'d/m/Y H:i' }}
                                                 </time>
                                             </div>
+                                            <p class="card-text line-clamp-3">{{post.post.search_description}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/vong-than/" title="Top 10 loài mèo đáng yêu nhất">
-                                                <img width="125" height="80"
-                                                     src="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 ls-is-cached lazyloaded"
-                                                     alt="Top 10 loài mèo đáng yêu nhất"
-                                                     data-src="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg"
-                                                     data-srcset="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 100w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 510w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 247w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 420w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 736w"
-                                                     data-sizes="(max-width: 736px) 100vw, 736px"
-                                                     sizes="(max-width: 736px) 100vw, 736px"
-                                                     srcset="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 100w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 510w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 247w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 420w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 736w">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-9 col-md-8 ">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg">
-                                                <a href="/vong-than/" title="Top 10 loài mèo đáng yêu nhất">Top 10 loài
-                                                    mèo đáng yêu nhất</a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time datetime="04/08/2023 02:11">31/03/2025 03:11</time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/vong-than/"
-                                               title="Mèo là món quà của thượng đế ban tặng loài người">
-                                                <img width="125" height="80"
-                                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUcrU3gAtnEH4yT1Z0sLB2HAbOZty3CW05Yg&s"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 ls-is-cached lazyloaded"
-                                                     alt="Mèo là món quà của thượng đế ban tặng loài người">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg">
-                                                <a href="/vong-than/"
-                                                   title="Mèo là món quà của thượng đế ban tặng loài người">
-                                                    Mèo là món quà của thượng đế ban tặng loài người
-                                                </a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time datetime="31/03/2025 02:11">31/03/2025 02:11</time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
+                            {% endfor %}
                         </div>
-                    </div>
-                </div>
-                <div class="blog-area">
-                    <div class="block-title-custom">
-                        <h3><span> Kinh Dịch Mai Hoa</span></h3>
-                        <a class="viewmore" href="/bat-tu/" title="Xem thêm Bát tự">Xem thêm</a>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <article class="card card-full hover-a mb-4">
-                                <div class="ratio_360-202 image-wrapper">
-                                    <a href="/"
-                                       title="">
-                                        <img width="390" height="220"
-                                             src="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg"
-                                             class="img-fluid w-80 attachment-390x220 size-390x220 ls-is-cached lazyloaded"
-                                             alt=""
-                                             data-src="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg"
-                                             data-srcset="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 390w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 125w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 1200w"
-                                             data-sizes="(max-width: 1200px) 100vw, 1200px"
-                                             sizes="(max-width: 1200px) 100vw, 1200px"
-                                             srcset="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 390w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 125w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 1200w">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h2 class="card-title h1-sm h3-lg">
-                                        <a href="/"
-                                           title="">Mèo là loài động vật thông minh, nhanh nhẹn và đáng yêu</a>
-                                    </h2>
-                                    <div class="card-text mb-2 text-muted small">
-                                        <time datetime="31/03/2025 04:57">31/03/2025 04:57</time>
-                                    </div>
-                                    <p class="card-text line-clamp-3">Mèo là loài động vật thông minh, nhanh nhẹn và
-                                        đáng yêu.
-                                        Chúng có bản tính độc lập nhưng cũng rất quấn chủ khi được yêu thương.
-                                        Mèo giúp con người thư giãn nhờ những tiếng kêu "meo meo" dễ thương và bộ lông
-                                        mềm mại.
-                                        Ngoài ra, chúng còn là những thợ săn chuột tài ba, góp phần giữ gìn nhà cửa sạch
-                                        sẽ.</p>
-                                </div>
-                            </article>
+                        <div class="col-12 text-center">
+                            <a href="/tai-lieu-ngu-hanh" class="btn btn-primary">Xem thêm</a>
                         </div>
-                        <div class="col-lg-6">
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper"><a href="//"
-                                                                                   title=""><img
-                                                width="125" height="80"
-                                                src="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg"
-                                                class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                alt="Loai meo vo dich thien ha"
-                                                data-src="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg"
-                                                data-srcset="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 100w, https://thanglongdaoquan.vn/wp-content/uploads/Co-than-Qua-tu-la-2-hung-tinh-510x321.png 510w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 247w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 420w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 768w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 900w"
-                                                data-sizes="(max-width: 900px) 100vw, 900px"
-                                                sizes="(max-width: 900px) 100vw, 900px"
-                                                srcset="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 100w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 510w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 247w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 420w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 768w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 900w"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a
-                                                    href="/"
-                                                    title="">Loài vật nuôi hiền lành - Thân thiện con người</a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 02:51">31/03/2025 02:51
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper"><a href="/"
-                                                                                   title=""><img
-                                                width="125" height="80"
-                                                src="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg"
-                                                class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                alt=""
-                                                data-src="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg"
-                                                data-srcset="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 100w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 510w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 247w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 420w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 768w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 900w"
-                                                data-sizes="(max-width: 900px) 100vw, 900px"
-                                                sizes="(max-width: 900px) 100vw, 900px"
-                                                srcset="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 100w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 510w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 247w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 420w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 768w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 900w"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a href="/"
-                                                                                     title="">Bí mật lớn nhất về lịch sử
-                                                loài mèo - Họ hàng loài hổ lanh kiếm?
-                                            </a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 04:51">31/03/2025 04:51
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/" title="">
-                                                <img width="125" height="80"
-                                                     src="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                     alt=""
-                                                     data-src="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg"
-                                                     data-srcset="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 100w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 510w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 247w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 420w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 768w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 900w"
-                                                     data-sizes="(max-width: 900px) 100vw, 900px"
-                                                     sizes="(max-width: 900px) 100vw, 900px"
-                                                     srcset="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 100w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 510w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 247w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 420w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 768w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 900w">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a href="/"
-                                                                                     title="">Lười biếng ban ngày, chăm
-                                                chỉ về đêm - Sự lười biếng có phần thú vị!</a></h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 07:54">31/03/2025 07:54
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/vong-than/" title="Top 10 loài mèo đáng yêu nhất">
-                                                <img width="125" height="80"
-                                                     src="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 ls-is-cached lazyloaded"
-                                                     alt="Top 10 loài mèo đáng yêu nhất"
-                                                     data-src="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg"
-                                                     data-srcset="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 100w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 510w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 247w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 420w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 736w"
-                                                     data-sizes="(max-width: 736px) 100vw, 736px"
-                                                     sizes="(max-width: 736px) 100vw, 736px"
-                                                     srcset="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 100w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 510w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 247w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 420w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 736w">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-9 col-md-8 ">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg">
-                                                <a href="/vong-than/" title="Top 10 loài mèo đáng yêu nhất">Top 10 loài
-                                                    mèo đáng yêu nhất</a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time datetime="04/08/2023 02:11">31/03/2025 03:11</time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/vong-than/"
-                                               title="Mèo là món quà của thượng đế ban tặng loài người">
-                                                <img width="125" height="80"
-                                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUcrU3gAtnEH4yT1Z0sLB2HAbOZty3CW05Yg&s"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 ls-is-cached lazyloaded"
-                                                     alt="Mèo là món quà của thượng đế ban tặng loài người">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg">
-                                                <a href="/vong-than/"
-                                                   title="Mèo là món quà của thượng đế ban tặng loài người">
-                                                    Mèo là món quà của thượng đế ban tặng loài người
-                                                </a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time datetime="31/03/2025 02:11">31/03/2025 02:11</time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-area">
-                    <div class="block-title-custom">
-                        <h3><span>Vật Phẩm Phong Thuỷ</span></h3>
-                        <a class="viewmore" href="/bat-tu/" title="Xem thêm Bát tự">Xem thêm</a>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <article class="card card-full hover-a mb-4">
-                                <div class="ratio_360-202 image-wrapper">
-                                    <a href="/"
-                                       title="">
-                                        <img width="390" height="220"
-                                             src="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg"
-                                             class="img-fluid w-80 attachment-390x220 size-390x220 ls-is-cached lazyloaded"
-                                             alt=""
-                                             data-src="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg"
-                                             data-srcset="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 390w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 125w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 1200w"
-                                             data-sizes="(max-width: 1200px) 100vw, 1200px"
-                                             sizes="(max-width: 1200px) 100vw, 1200px"
-                                             srcset="https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 390w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 125w, https://tenten.vn/ai/wp-content/uploads/2024/12/privacy-policy-tenten-ai-390x220.jpg 1200w">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h2 class="card-title h1-sm h3-lg">
-                                        <a href="/"
-                                           title="">Mèo là loài động vật thông minh, nhanh nhẹn và đáng yêu</a>
-                                    </h2>
-                                    <div class="card-text mb-2 text-muted small">
-                                        <time datetime="31/03/2025 04:57">31/03/2025 04:57</time>
-                                    </div>
-                                    <p class="card-text line-clamp-3">Mèo là loài động vật thông minh, nhanh nhẹn và
-                                        đáng yêu.
-                                        Chúng có bản tính độc lập nhưng cũng rất quấn chủ khi được yêu thương.
-                                        Mèo giúp con người thư giãn nhờ những tiếng kêu "meo meo" dễ thương và bộ lông
-                                        mềm mại.
-                                        Ngoài ra, chúng còn là những thợ săn chuột tài ba, góp phần giữ gìn nhà cửa sạch
-                                        sẽ.</p>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-lg-6">
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper"><a href="//"
-                                                                                   title=""><img
-                                                width="125" height="80"
-                                                src="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg"
-                                                class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                alt="Loai meo vo dich thien ha"
-                                                data-src="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg"
-                                                data-srcset="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 100w, https://thanglongdaoquan.vn/wp-content/uploads/Co-than-Qua-tu-la-2-hung-tinh-510x321.png 510w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 247w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 420w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 768w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 900w"
-                                                data-sizes="(max-width: 900px) 100vw, 900px"
-                                                sizes="(max-width: 900px) 100vw, 900px"
-                                                srcset="https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 100w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 510w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 247w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 420w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 768w, https://image.shutterstock.com/image-photo/fluffy-cat-lies-on-windowsill-250nw-2145417609.jpg 900w"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a
-                                                    href="/"
-                                                    title="">Loài vật nuôi hiền lành - Thân thiện con người</a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 02:51">31/03/2025 02:51
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper"><a href="/"
-                                                                                   title=""><img
-                                                width="125" height="80"
-                                                src="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg"
-                                                class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                alt=""
-                                                data-src="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg"
-                                                data-srcset="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 100w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 510w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 247w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 420w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 768w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 900w"
-                                                data-sizes="(max-width: 900px) 100vw, 900px"
-                                                sizes="(max-width: 900px) 100vw, 900px"
-                                                srcset="https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 100w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 510w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 247w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 420w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 768w, https://image.shutterstock.com/image-photo/angry-cat-animal-world-emotions-250nw-241539994.jpg 900w"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a href="/"
-                                                                                     title="">Bí mật lớn nhất về lịch sử
-                                                loài mèo - Họ hàng loài hổ lanh kiếm?
-                                            </a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 04:51">31/03/2025 04:51
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/" title="">
-                                                <img width="125" height="80"
-                                                     src="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                     alt=""
-                                                     data-src="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg"
-                                                     data-srcset="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 100w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 510w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 247w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 420w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 768w,
-                              https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 900w"
-                                                     data-sizes="(max-width: 900px) 100vw, 900px"
-                                                     sizes="(max-width: 900px) 100vw, 900px"
-                                                     srcset="https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 100w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 510w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 247w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 420w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 768w,
-                        https://image.shutterstock.com/image-photo/close-white-cat-loving-boxer-250nw-409516822.jpg 900w">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg"><a href="/"
-                                                                                     title="">Lười biếng ban ngày, chăm
-                                                chỉ về đêm - Sự lười biếng có phần thú vị!</a></h3>
-                                            <div class="card-text small text-muted">
-                                                <time
-                                                        datetime="31/03/2025 07:54">31/03/2025 07:54
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/vong-than/" title="Top 10 loài mèo đáng yêu nhất">
-                                                <img width="125" height="80"
-                                                     src="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 ls-is-cached lazyloaded"
-                                                     alt="Top 10 loài mèo đáng yêu nhất"
-                                                     data-src="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg"
-                                                     data-srcset="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 100w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 510w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 247w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 420w,
-                              https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 736w"
-                                                     data-sizes="(max-width: 736px) 100vw, 736px"
-                                                     sizes="(max-width: 736px) 100vw, 736px"
-                                                     srcset="https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 100w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 510w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 247w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 420w,
-                        https://www.publicdomainpictures.net/pictures/200000/nahled/maine-coon-cat-1474814654kb3.jpg 736w">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-9 col-md-8 ">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg">
-                                                <a href="/vong-than/" title="Top 10 loài mèo đáng yêu nhất">Top 10 loài
-                                                    mèo đáng yêu nhất</a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time datetime="04/08/2023 02:11">31/03/2025 03:11</time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card card-full hover-a mb-4">
-                                <div class="row">
-                                    <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                        <div class="ratio_115-80 image-wrapper">
-                                            <a href="/vong-than/"
-                                               title="Mèo là món quà của thượng đế ban tặng loài người">
-                                                <img width="125" height="80"
-                                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUcrU3gAtnEH4yT1Z0sLB2HAbOZty3CW05Yg&s"
-                                                     class="img-fluid w-80 attachment-125x80 size-125x80 ls-is-cached lazyloaded"
-                                                     alt="Mèo là món quà của thượng đế ban tặng loài người">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-8">
-                                        <div class="card-body pt-0">
-                                            <h3 class="card-title h6 h5-sm h6-lg">
-                                                <a href="/vong-than/"
-                                                   title="Mèo là món quà của thượng đế ban tặng loài người">
-                                                    Mèo là món quà của thượng đế ban tặng loài người
-                                                </a>
-                                            </h3>
-                                            <div class="card-text small text-muted">
-                                                <time datetime="31/03/2025 02:11">31/03/2025 02:11</time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                        </div>
+                        {% else %}
+                        <p>Chưa có bài viết nào trong danh mục này.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -1143,7 +500,7 @@
                              data-href="https://www.facebook.com/maihoadichquan/"
                              data-tabs="timeline"
                              data-width="500"
-                             data-height="800"
+                             data-height="400"
                              data-adapt-container-width="true"
                              data-hide-cover="false"
                              data-show-facepile="true">
@@ -1152,20 +509,20 @@
 
                     <!-- TikTok Section -->
                     <div class="social-section">
-    <div class="block-title-custom-z"> Xem video mới nhất trên TikTok</div>
-    <blockquote class="tiktok-embed"
-                cite="https://www.tiktok.com/@maihoadichquan/video/7382903882126593288"
-                data-video-id="7382903882126593288"
-                style="max-width: 500px; min-width: 325px;">
-        <section>
-            <a target="_blank" title="Mai Hoa Dịch Quán"
-               href="https://www.tiktok.com/@maihoadichquan">
-                @maihoadichquan
-            </a>
-        </section>
-    </blockquote>
-    <script async src="https://www.tiktok.com/embed.js"></script>
-</div>
+                        <div class="block-title-custom-z"> Xem video mới nhất trên TikTok</div>
+                        <blockquote class="tiktok-embed"
+                                    cite="https://www.tiktok.com/@maihoadichquan/video/7382903882126593288"
+                                    data-video-id="7382903882126593288"
+                                    style="max-width: 500px; min-width: 325px;">
+                            <section>
+                                <a target="_blank" title="Mai Hoa Dịch Quán"
+                                   href="https://www.tiktok.com/@maihoadichquan">
+                                    @maihoadichquan
+                                </a>
+                            </section>
+                        </blockquote>
+                        <script async src="https://www.tiktok.com/embed.js"></script>
+                    </div>
 
                 </div>
 

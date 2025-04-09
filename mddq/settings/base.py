@@ -13,10 +13,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,7 +33,6 @@ USE_L10N = True
 INSTALLED_APPS = [
     "home",
     "blog",
-    "search",
 "django_quill",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -52,8 +53,23 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-]
+    'django.contrib.sitemaps',
+    'wagtail.contrib.sitemaps',
+# 'oscar',
+#     'oscar.apps.catalogue',
+#     'oscar.apps.communication',
+#     'oscar.apps.payment',
+#     'oscar.apps.shipping',
+#     'oscar.apps.order',
+#     'oscar.apps.basket',
+#     'oscar.apps.voucher',
+#     'oscar.apps.dashboard',
+#     'oscar.apps.search',
 
+]
+ALLOWED_HOSTS = ['maihoadichquan.vn', 'www.maihoadichquan.vn']
+
+SITE_URL = 'https://maihoadichquan.vn'
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -63,7 +79,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    # "oscar.apps.basket.middleware.BasketMiddleware",
 ]
+# OSCAR_DYNAMIC_CLASS_LOADER = "oscar.core.loading.default_class_loader"
 
 ROOT_URLCONF = "mddq.urls"
 STATIC_URL = '/static/'

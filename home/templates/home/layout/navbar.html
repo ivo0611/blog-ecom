@@ -1,11 +1,12 @@
 <!-- Navbar Light -->
 <div class="container w-100">
-     <img src="/static/assets/img/home-banner.jpg"  class="img-fluid" style="max-height: 800px;">
+     <img src="/static/assets/img/home-banner2.jpg"  class="img-fluid" style="max-height: 800px;">
+    <a id="current-date" class="btn btn-sm bg-gradient-dark btn-round mb-0 ms-auto d-lg-none d-block">
+
+</a>
 <nav class="navbar navbar-expand-lg navbar-light bg-white z-index-3 py-3">
 
-<a id="current-date" class="btn btn-sm bg-gradient-dark btn-round mb-0 ms-auto d-lg-none d-block">
-  <!-- Ngày tháng sẽ được cập nhật ở đây -->
-</a>
+
 
 <!--    <a href="https://app-generator.dev/product/material-kit-pro/django/" class="btn btn-sm bg-gradient-dark btn-round mb-0 ms-auto d-lg-none d-block">-->
 <!--      Giỏ hàng-->
@@ -27,27 +28,27 @@
 </li>
         <li class="nav-item mx-2">
           <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center">
-            Bát tự<i class="fas fa-chevron-down ms-1"></i>
+            Xem Mệnh <i class="fas fa-chevron-down ms-1"></i>
           </a>
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center">
-            Phong Thuỷ <i class="fas fa-chevron-down ms-1"></i>
+            Phong Thủy <i class="fas fa-chevron-down ms-1"></i>
           </a>
         </li>
          <li class="nav-item mx-2">
           <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center">
-            Đạo Lý Cổ nhân <i class="fas fa-chevron-down ms-1"></i>
+            Quẻ Mai Hoa<i class="fas fa-chevron-down ms-1"></i>
           </a>
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center">
-             Kinh Dịch <i class="fas fa-chevron-down ms-1"></i>
+             Vật Phẩm<i class="fas fa-chevron-down ms-1"></i>
           </a>
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center">
-            Vật phẩm <i class="fas fa-chevron-down ms-1"></i>
+           Tin Tức <i class="fas fa-chevron-down ms-1"></i>
           </a>
         </li>
         <li class="nav-item mx-2">
@@ -121,10 +122,11 @@
     background-color: #FFA500;
 }
 #current-date {
-    /*position: absolute;*/
-    left: 15px;
-    right: 360px;
-    top: 50%;
+    z-index: 9999;
+    position: absolute;
+    left: 95px;
+    right: auto;
+    top: 98px;
     transform: translateY(-50%);
     font-size: 16px;
     font-weight: bold;
@@ -133,8 +135,14 @@
     border: none;
     padding: 5px 10px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
 }
-
+@media (max-width: 400px) {
+    left: 230px;
+}
+.mb-0{
+    margin-top: 10px !important;
+}
 /* Mobile Menu */
 @media (max-width: 992px) {
     .navbar-collapse {
@@ -142,6 +150,21 @@
         padding: 15px;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .navbar {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        padding: 4px 8px; /* Giảm padding của mục menu */
+        font-size: 0.9rem; /* Giảm kích thước chữ */
+    }
+
+    .navbar-toggler {
+        padding: 5px 8px !important; /* Thu nhỏ nút toggler */
     }
 }
 @media (max-width: 992px) {

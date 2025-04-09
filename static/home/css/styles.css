@@ -5,22 +5,31 @@
 .list-buttons .button-hre a {
     text-decoration: none;
    color: #D4AF37;
-     background: #2C2C2C; ;
+     background:linear-gradient(135deg,  #2C2C2C, #5A2D2D);
     padding: 6px 0px;
     width: 100%;
     display: inline-block;
-       font-family: 'Dancing Script', cursive;
     font-size: 28px;
     text-align: center;
     border-radius: 5px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Bóng nhẹ */
     transition: background 0.3s, transform 0.2s;
+    font-weight: 700;
+}
+.container.mt-3 {
+    margin-top: 0 !important; /* Ghi đè margin-top */
 }
 
 .list-buttons .button-hre a:hover, .list-buttons .button-hre a.active {
      background: #A67C00;
 }
+@media (max-width: 872px) {
+.list-buttons .button-hre a {
 
+    font-size: 15px;
+
+}
+}
 .col-lg-6,
 .card,
 .card-full,
@@ -121,6 +130,7 @@ h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hov
 
 .card-title {
   color: black;
+  font-weight: 900; /* 700 thường là độ đậm chuẩn */
 }
 .card-title:hover{
     color:yellow;
@@ -168,17 +178,336 @@ h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hov
     }
 }
 
-.blog-wrapper {
-    background: rgba(42, 42, 42, 0.4); /* Xám than, độ trong suốt 80% */
+.post-detail {
+    background: rgba(255, 255, 255, 1); /* Xám than, độ trong suốt 80% */
     color: #fff; /* Chữ trắng */
     padding: 30px;
-    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Đổ bóng nhẹ */
 }
 
-.blog-wrapper h1 {
-    color: #ffd700; /* Màu vàng gold */
-}
+
 .breadcrumb-item{
      text-decoration: none;
+}
+.post-title {
+    font-size: 2.5rem; /* Chữ lớn */
+    font-weight: bold;
+    text-align: center;
+    color: #333; /* Màu tối */
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Bóng mờ */
+}
+.post-meta {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.post-meta .author {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.post-meta .date {
+    font-style: italic;
+    color: #110d0d;
+}
+.post-description {
+    font-size: 16px;
+    color: #444;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+.blog-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify;
+    border-radius: 8px;
+}
+
+.blog-content p {
+    margin-bottom: 15px;
+}
+
+.blog-content h2, .blog-content h3 {
+    color: #007bff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+}
+
+.blog-content blockquote {
+    font-style: italic;
+    border-left: 4px solid #007bff;
+    margin: 20px 0;
+    color: #555;
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+.blog-content ul, .blog-content ol {
+}
+
+.blog-content ul li::before {
+    content: "✔";
+    color: #28a745;
+    font-weight: bold;
+}
+
+.blog-content a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.blog-content a:hover {
+    text-decoration: underline;
+}
+ @media (max-width: 576px) { /* Mobile */
+  .post-title {
+    font-size: 1.5rem;
+}
+}
+.navbar, .container.w-100 {
+    width: 100%;
+    max-width: 1294px; /* Hoặc bất kỳ giá trị nào bạn muốn */
+    margin: 0 auto; /* Căn giữa */
+}
+@media (max-width: 768px) {
+    .list-buttons .col-6 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+    /* Sidebar cards */
+aside .card {
+
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+aside .card-header {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+}
+
+/* List group for categories and recent posts */
+aside .list-group-item {
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+}
+
+aside .list-group-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+aside .list-group-item a:hover {
+    color: #007bff;
+}
+
+/* Search input group */
+aside .input-group input {
+    border-radius: 5px 0 0 5px;
+}
+
+aside .input-group .btn {
+    border-radius: 0 5px 5px 0;
+}
+
+/* Tags styling */
+aside .card-body .badge {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 20px;
+    background-color: #6c757d;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+aside .card-body .badge:hover {
+    background-color: #495057;
+}
+    /* Sidebar cards */
+aside .card {
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+aside .card-header {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* List group for categories and recent posts */
+aside .list-group-item {
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+}
+
+aside .list-group-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+aside .list-group-item a:hover {
+    color: #007bff;
+}
+
+/* Search input group */
+aside .input-group input {
+    border-radius: 5px 0 0 5px;
+}
+
+aside .input-group .btn {
+    border-radius: 0 5px 5px 0;
+}
+
+/* Tags styling */
+aside .card-body .badge {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 20px;
+    background-color: #6c757d;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+aside .card-body .badge:hover {
+    background-color: #495057;
+}
+.block-title-custom-y {
+    margin-top: 20px;
+    text-align: center; /* Căn giữa chữ */
+    font-size: 20px; /* Cỡ chữ lớn hơn */
+    font-weight: bold; /* Chữ đậm */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     background: linear-gradient(135deg,  #2C2C2C, #5A2D2D);
+    padding: 10px 20px;
+    border-radius: 5px;
+   color: #D4AF37;
+    font-weight: bold;
+
+}
+
+.block-title-custom-x {
+    margin-top: 20px;
+    height: 50px;
+    text-align: center; /* Căn giữa chữ */
+    font-size: 20px; /* Cỡ chữ lớn hơn */
+    font-weight: bold; /* Chữ đậm */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     background: linear-gradient(135deg,  #2C2C2C, #5A2D2D);
+    padding: 10px 20px;
+    border-radius: 5px;
+   color: #D4AF37;
+    font-weight: bold;
+
+}
+
+/* Nút Xem thêm */
+.btn-primary {
+     background: linear-gradient(135deg,  #2C2C2C, #c27d2a);
+   color: #D4AF37;
+    padding: 12px 30px; /* Tạo không gian rộng hơn cho nút */
+    font-size: 16px;
+    font-weight: bold; /* Làm chữ đậm */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25px; /* Bo góc cho nút */
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động khi hover */
+    display: inline-block;
+}
+
+.btn-primary:hover {
+     background: linear-gradient(135deg,  #2C2C2C, #be8a4e);
+    transform: translateY(-4px); /* Hiệu ứng nổi lên khi hover */
+
+}
+
+.btn-primary:focus, .btn-primary:active {
+    outline: none; /* Loại bỏ viền khi nhấn nút */
+}
+
+/* Đảm bảo nút luôn căn giữa */
+.col-12.text-center {
+    margin-top: 20px; /* Thêm khoảng cách phía trên nút */
+}
+.sidebar {
+    border-radius: 12px;
+    color: #222; /* Màu chữ tối rõ */
+    font-weight: 500;
+}
+.sidebar a {
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+}
+.sidebar .card {
+
+    border: 1px solid #ddd;
+    color: #222;
+}
+.sidebar .card-header {
+   background:linear-gradient(135deg,  #2C2C2C, #5A2D2D);
+    font-weight: 700;
+   color: #e5b514;
+}
+.sidebar .list-group-item {
+    background-color: transparent;
+    border: none;
+    color: #333;
+}
+.sidebar .list-group-item a {
+    color: #222;
+    font-weight: 600;
+}
+.sidebar .badge {
+    background-color: #88304E;
+    color: white;
+    font-weight: 500;
+}
+.list-group-item:hover{
+       color: #e5b514;
+}
+
+.img-button {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.btn-icon {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s;
+}
+
+.btn-icon:hover {
+    transform: translateY(-4px);
+    color: #b02a37;
 }

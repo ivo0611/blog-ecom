@@ -10,12 +10,12 @@ def register_blog_menu():
 
 from wagtail import hooks
 from wagtail.admin.viewsets.model import ModelViewSet
-from .models import BlogCategory
+from .models import BlogCategory, CategoryListPage
 
 
 class BlogCategoryViewSet(ModelViewSet):
     model = BlogCategory
-    menu_label = "Thể loại"
+    menu_label = "Danh mục bài viết"
     icon = "list-ul"
     add_to_admin_menu = True
     list_display = ["name", "slug"]
@@ -23,8 +23,21 @@ class BlogCategoryViewSet(ModelViewSet):
 
 
     form_fields = ["name", "slug"]
+class CategoryListPageViewSet(ModelViewSet):
+    model = CategoryListPage
+    menu_label = "Trang bài viết theo danh mục"
+    icon = "list-ul"
+    add_to_admin_menu = True
+
+    form_fields = ["title", "slug","body","category"]
+
 
 
 @hooks.register("register_admin_viewset")
 def register_blog_category_viewset():
     return BlogCategoryViewSet()
+
+
+@hooks.register("register_admin_viewset")
+def register_category_list_page_viewset():
+    return CategoryListPageViewSet()

@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
+from blog.views import home_view
 
 urlpatterns = [
-    path("", views.home, name="home"),  # Trang chủ
+    path('', home_view, name='home'),
+
 ]
