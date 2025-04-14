@@ -75,6 +75,7 @@
     border-radius: 5px;
    color: #D4AF37;
     font-weight: bold;
+    margin-top:24px;
 
 }
 @media (max-width: 672px) {
@@ -99,7 +100,32 @@
     font-size: 14px;
     transition: 0.3s;
 }
+.block-title-custom-d {
+     background: linear-gradient(135deg,  #2C2C2C, #5A2D2D);
+    padding: 10px 20px;
+    border-radius: 5px;
+   color: #D4AF37;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.block-title-custom-d-maihoa {
+     background: linear-gradient(135deg,  #2C2C2C, #5A2D2D);
+    padding: 10px 20px;
+    border-radius: 5px;
+   color: #D4AF37;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top:-20px;
+}
+.block-title-custom-d-ngu-hanh {
+     background: linear-gradient(135deg,  #2C2C2C, #5A2D2D);
+    padding: 10px 20px;
+    border-radius: 5px;
+   color: #D4AF37;
+    font-weight: bold;
+    margin-bottom: 20px;
 
+}
 .block-title-custom .viewmore:hover {
     text-decoration: underline;
 }
@@ -510,4 +536,8 @@ aside .card-body .badge:hover {
 .btn-icon:hover {
     transform: translateY(-4px);
     color: #b02a37;
+}
+.img-button {
+    width: 90px; /* tăng kích thước ảnh lên 1.5 lần */
+    max-width: none; /* bỏ giới hạn max-width của img-fluid */
 }

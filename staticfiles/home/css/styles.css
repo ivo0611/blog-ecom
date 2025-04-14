@@ -55,6 +55,7 @@
     margin-bottom: 20px;
 }
 .block-title-custom-z {
+    margin-top:24px;
     text-align: center; /* Căn giữa chữ */
     font-size: 20px; /* Cỡ chữ lớn hơn */
     font-weight: bold; /* Chữ đậm */

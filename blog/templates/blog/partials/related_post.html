@@ -1,0 +1,16 @@
+
+
+{% if related_posts %}
+    <div class="related-posts-widget"> {# Hoặc class CSS của bạn #}
+        <h4>Bài viết liên quan</h4>
+        <ul>
+            {% for post in related_posts %}
+                <li>
+                    <a href="">{{ post.title }}</a>
+                    {# Hiển thị thêm thông tin nếu muốn, ví dụ ngày đăng #}
+                    {# <small>{{ post.first_published_at|date:"d/m/Y" }}</small> #}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
