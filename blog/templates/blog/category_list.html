@@ -3,141 +3,220 @@
 {% load static %}
 {% load wagtailimages_tags %}
 {% load blog_post_tags %}
+
 {% block content %}
-<div class="container">
+<div class="container mt-4 mb-4"> {# Thêm margin top/bottom cho container #}
     <div class="row">
+        {# Main Content Area #}
         <div class="col-md-8">
-            {% block m_content %}
             <div class="blog-area">
                 {% if category %}
-                <div class="block-title-custom-y">
-                    <h3 id="bat-tu-menh-ly"><span>{{category}}</span></h3>
+                <div class="block-title-custom-y mb-4"> {# Thêm margin bottom #}
+                    <h3 id="category-title-{{ category.slug|default:'all' }}"><span>{{ category.name|default:"Bài viết" }}</span></h3>
                 </div>
                 {% endif %}
-                <div class="row">
-                    {% if posts %}
-                    <div class="col-lg-6">
-                        {% with first_post=posts.0 %}
-                        <article class="card card-full hover-a mb-4">
-                            <div class="ratio_360-202 image-wrapper">
-                                <a href="{{ first_post.post.url }}" title="{{ first_post.post.title }}">
-                                    {% if first_post.image_url %}
-                                    <img width="390" height="220"
-                                         src="{{ first_post.image_url }}"
-                                         class="img-fluid w-80 attachment-390x220 size-390x220 lazyloaded"
-                                         alt="{{ first_post.post.title }}">
-                                    {% endif %}
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h2 class="card-title h1-sm h3-lg">
-                                    <a href="{{ first_post.post.url }}" title="{{ first_post.post.title }}">
-                                        {{first_post.post.title }}</a>
-                                </h2>
-                                <div class="card-text mb-2 text-muted small">
-                                    <time datetime="{{ first_post.post.first_published_at|date:'Y-m-d H:i' }}">
-                                        {{ first_post.post.first_published_at|date:'d/m/Y H:i' }}
-                                    </time>
-                                </div>
-                                <p class="card-text line-clamp-3">{{ first_post.post.search_description}}</p>
-                            </div>
-                        </article>
-                        {% endwith %}
-                    </div>
 
-                    <div class="col-lg-6">
-                        {% for post in posts|slice:"1:" %}
-                        <article class="card card-full hover-a mb-4">
-                            <div class="row">
-                                <div class="col-3 col-md-4 pe-2 pe-md-0">
-                                    <div class="ratio_115-80 image-wrapper">
-                                        <a href="{{ post.post.url }}" title="{{ post.post.title }}">
-                                            {% if post.image_url %}
-                                            <img width="125" height="80"
-                                                 src="{{ post.image_url }}"
-                                                 class="img-fluid w-80 attachment-125x80 size-125x80 lazyloaded"
-                                                 alt="{{ post.post.title }}">
-                                            {% endif %}
-                                        </a>
+
+
+                {% if posts %}
+                    <div class="related-posts-section">
+                        <ul class="list-group list-group-flush">
+                            {% for post in posts|slice:"0:" %}
+                            <li class="list-group-item d-flex align-items-center px-0 py-3">
+                                {% if post.image_url %}
+                                <div class="flex-shrink-0 "> {# Wrapper for image #}
+                                    <a href="{{ post.post.url }}">
+                                    <img src="{{ post.image_url }}" alt="{{ post.post.title }}"
+                                          class="me-3" style="width: 90px; height: 60px; object-fit: cover; border-radius: 6px; margin-left: 12px"> {# Use class for styling #}
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="flex-grow-1">
+                                    <a href="{{ post.post.url }}" class="text-decoration-none text-dark" style="
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.4;">
+                                        {{ post.post.title }}
+                                    </a>
+                                    <div class="related-post-date">
+                                        Ngày đăng: {{ post.post.first_published_at|date:"d/m/Y" }}
                                     </div>
                                 </div>
-                                <div class="col-9 col-md-8">
-                                    <div class="card-body pt-0">
-                                        <h3 class="card-title h6 h5-sm h6-lg">
-                                            <a href="{{ post.post.url }}" title="{{ post.post.title }}">
-                                                {{post.post.title }}</a>
-                                        </h3>
-                                        <div class="card-text small text-muted">
-                                            <time datetime="{{ post.post.first_published_at|date:'Y-m-d H:i' }}">
-                                                {{ post.post.first_published_at|date:'d/m/Y H:i' }}
-                                            </time>
-                                        </div>
-                                        <p class="card-text line-clamp-3">{{post.post.search_description}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        {% endfor %}
+                            </li>
+                            {% empty %}
+                                {% if forloop.counter0 == 0 %} {# Only show if the slice is empty AND no first post was highlighted #}
+                                    <li class="list-group-item">Chưa có bài viết nào trong mục này.</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
                     </div>
-                    {% else %}
-                    <p>Chưa có bài viết nào trong danh mục này.</p>
-                    {% endif %}
-                </div>  <!-- đóng row -->
-    <div class="block-title-custom-x">
+                {% elif posts %}
+                     {# Optionally show a message if only the first post exists and was highlighted above #}
+                     {# <p class="mt-4 text-center text-muted">Không có bài viết nào khác.</p> #}
+                {% else %}
+                     <p class="mt-4 text-center text-muted">Chưa có bài viết nào trong mục này.</p>
+                {% endif %}
 
-                </div>
+
+                {# Pagination (Moved outside UL) #}
                 {% if posts.has_other_pages %}
-                <div class="d-flex justify-content-center mt-4">
+                <div class="d-flex justify-content-center mt-5"> {# Thêm margin top lớn hơn #}
                     <nav aria-label="Pagination">
-                        <ul class="pagination">
+                        <ul class="pagination custom-pagination"> {# Thêm class custom nếu cần #}
                             {% if posts.has_previous %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a>
+                                <a class="page-link" href="?page={{ posts.previous_page_number }}" aria-label="Previous">&laquo;</a>
                             </li>
                             {% else %}
                             <li class="page-item disabled">
-                                <span class="page-link">&laquo;</span>
+                                <span class="page-link" aria-hidden="true">&laquo;</span>
                             </li>
                             {% endif %}
 
-                            {% for num in posts.paginator.page_range %}
-                            {% if posts.number == num %}
-                            <li class="page-item active">
-                                <span class="page-link">{{ num }}</span>
-                            </li>
-                            {% else %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                            </li>
-                            {% endif %}
+
+                            {% comment %} Bỏ comment đoạn dưới nếu chưa tạo tag get_pagination_range {% endcomment %}
+                            {% comment %}
+                            {% get_pagination_range posts page_param='page' as page_range %}
+                            {% for num in page_range %}
+                                {% if num == '...' %}
+                                     <li class="page-item disabled"><span class="page-link">...</span></li>
+                                {% elif posts.number == num %}
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">{{ num }}</span>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                    </li>
+                                {% endif %}
                             {% endfor %}
+                            {% endcomment %}
 
-                            {% if posts.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a>
-                            </li>
-                            {% else %}
-                            <li class="page-item disabled">
-                                <span class="page-link">&raquo;</span>
-                            </li>
-                            {% endif %}
+                            {# --- Dùng đoạn code này thay thế nếu chưa tạo tag get_pagination_range --- #}
+                            {% for num in posts.paginator.page_range %}
+                                {% if posts.number == num %}
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">{{ num }}</span>
+                                    </li>
+                                {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %} {# Chỉ hiển thị vài trang xung quanh trang hiện tại - có thể bỏ điều kiện elif này để hiện tất cả #}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                    </li>
+                                {% elif num == posts.paginator.page_range|first or num == posts.paginator.page_range|last %} {# Luôn hiển thị trang đầu và cuối #}
+                                    {% if forloop.counter == 2 and posts.number > 4 %} {# Hiển thị ... sau trang 1 #}
+                                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                                    {% endif %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                    </li>
+                                     {% if forloop.revcounter == 2 and posts.number < posts.paginator.num_pages|add:'-3' %} {# Hiển thị ... trước trang cuối #}
+                                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {# --- Hết đoạn code thay thế --- #}
                         </ul>
                     </nav>
                 </div>
                 {% endif %}
 
-            </div>  <!-- đóng blog-area -->
-            {% endblock m_content %}
-        </div>
-
-        <aside class="col-md-4 end-sidebar-lg-2  mt-4">
-              {% render_sidebar %}
-
-        </aside>
-    </div>
-
-</div>
-{% endblock content %}
+            </div> </div> {# Sidebar #}
+        <aside class="col-md-4 mt-4 mt-md-0"> {# Bỏ margin top trên mobile/tablet nếu sidebar xuống dưới #}
+             <div class="sidebar-sticky-wrapper"> {# Thêm wrapper nếu muốn sidebar dính khi cuộn #}
+                {% render_sidebar %}
+            </div>
+        </aside> </div> </div> {# --- CSS Styles --- #}
 <style>
+    .blog-area {
+        /* Add padding or styles for the main blog area if needed */
+    }
+
+
+
+
+
+
+    /* Style for related post list items */
+    .list-group-item {
+        border-top: 1px solid #f0f0f0 !important; /* Light separator */
+       background-color: transparent !important;
+
+
+    }
+    .related-post-date{
+        font-size: smaller;
+    }
+    .list-group-item:first-child {
+        border-top: none !important;
+    }
+
+     .list-group-item:hover .related-post-image {
+          transform: scale(1.05);
+     }
+
+
+
+    /* Custom Pagination Styles (Optional) */
+    .custom-pagination .page-item .page-link {
+        color: #a87a3a; /* Example primary color */
+        border-radius: 0.25rem; /* Match Bootstrap's radius */
+        margin: 0 3px; /* Spacing between page numbers */
+        border: 1px solid #dee2e6;
+         transition: background-color 0.2s ease, color 0.2s ease;
+    }
+     .custom-pagination .page-item.disabled .page-link {
+         color: #6c757d;
+         background-color: #e9ecef;
+         border-color: #dee2e6;
+     }
+    .custom-pagination .page-item.active .page-link {
+        background-color: #a87a3a;
+        border-color: #a87a3a;
+        color: white;
+        z-index: 3; /* Ensure active is on top */
+    }
+     .custom-pagination .page-item .page-link:hover {
+          background-color: #f8f9fa; /* Light hover */
+          color: #91601d;
+          z-index: 2;
+     }
+      .custom-pagination .page-item.active .page-link:hover {
+           background-color: #a87a3a; /* Prevent hover change on active */
+           color: white;
+      }
+
+    /* Sidebar Sticky Wrapper (Basic Example) */
+    .sidebar-sticky-wrapper {
+        position: sticky;
+        top: 20px; /* Adjust top offset as needed */
+        /* Add max-height and overflow-y if content can be very long */
+        /* max-height: calc(100vh - 40px); */
+        /* overflow-y: auto; */
+    }
+
+    /* Responsive adjustments */
+     @media (max-width: 767.98px) {
+         .block-title-custom-y h3 {
+              font-size: 1.5rem;
+         }
+         .related-posts-section h4 {
+              font-size: 1.2rem;
+         }
+         .related-post-image {
+            width: 75px;
+            height: 55px;
+         }
+         .related-post-title {
+             font-size: 0.9rem;
+         }
+         .sidebar-sticky-wrapper {
+             position: static; /* Disable sticky on mobile */
+         }
+     }
 
 </style>
+{% endblock content %}

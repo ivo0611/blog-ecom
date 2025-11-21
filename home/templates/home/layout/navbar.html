@@ -1,199 +1,163 @@
-<!-- Navbar Light -->
-<div class="container w-100">
-     <img src="/static/assets/img/home-banner2.jpg"  class="img-fluid" style="max-height: 800px;">
-    <a id="current-date" class="btn btn-sm bg-gradient-dark btn-round mb-0 ms-auto d-lg-none d-block">
-
-</a>
-<nav class="navbar navbar-expand-lg navbar-light bg-white z-index-3 py-3">
 
 
 
-<!--    <a href="https://app-generator.dev/product/material-kit-pro/django/" class="btn btn-sm bg-gradient-dark btn-round mb-0 ms-auto d-lg-none d-block">-->
-<!--      Giỏ hàng-->
-<!--    </a>-->
+<div class="container container-fluid bg-danger text-white sticky-top shadow-sm">
+  <!-- Header Logo + Title -->
+  <div class="d-flex justify-content-between align-items-center px-3">
+    <div class="d-flex align-items-center">
+      <a href="/" class="d-inline-block">
+        <img src="/static/assets/img/ost.png" alt="Logo" class="rounded-circle me-3" style="width: 75px; height: 75px;">
+      </a>
+       <a href="/" class="h4 mb-0 fw-bold d-inline-block">
+    <h1 class="fs-3 fs-md-1 mb-2 mb-md-4 fw-bold">Mai Hoa Dịch Quán</h1>
 
+       </a>
+    </div>
+    <!-- Bỏ hoặc thêm icon tùy ý -->
+    <!-- <img src="/static/assets/img/icon-right.png" alt="Right Icon" style="width: 35px;"> -->
+  </div>
 
-   <button class="navbar-toggler shadow-none ms-2 custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button>
-
-
-
-    <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
-      <ul class="navbar-nav navbar-nav-hover mx-auto">
-        <li class="nav-item mx-2">
-    <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center" href="/">
-        Trang chủ
-    </a>
-</li>
-        <li class="nav-item mx-2">
-          <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center">
-            Xem Mệnh <i class="fas fa-chevron-down ms-1"></i>
-          </a>
+  <!-- Navbar Menu -->
+  <nav class="navbar navbar-dark bg-danger py-0">
+    <div class="container-fluid px-0">
+      <ul class="navbar-nav d-flex flex-row justify-content-between align-items-center w-100 fw-semibold text-center mb-0">
+        <li class="nav-item flex-fill text-center">
+          <a class="nav-link" href="/tai-lieu-bat-tu/">Xem Mệnh</a>
         </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center">
-            Phong Thủy <i class="fas fa-chevron-down ms-1"></i>
-          </a>
+        <li class="nav-item flex-fill text-center">
+          <a class="nav-link" href="/tai-lieu-phong-thuy/">Phong Thủy</a>
         </li>
-         <li class="nav-item mx-2">
-          <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center">
-            Quẻ Mai Hoa<i class="fas fa-chevron-down ms-1"></i>
-          </a>
+        <li class="nav-item flex-fill text-center">
+          <a class="nav-link" href="/tai-lieu-mai-hoa/">Gieo Quẻ</a>
         </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center">
-             Vật Phẩm<i class="fas fa-chevron-down ms-1"></i>
-          </a>
+        <li class="nav-item flex-fill text-center">
+          <a class="nav-link" href="/vat-pham-phong-thuy/">Vật Phẩm</a>
         </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link d-flex justify-content-between cursor-pointer align-items-center">
-           Tin Tức <i class="fas fa-chevron-down ms-1"></i>
-          </a>
+        <li class="nav-item flex-fill text-center">
+          <a class="nav-link" href="/dich-vu-mai-hoa/">Dịch Vụ</a>
         </li>
-        <li class="nav-item mx-2">
-    <a class="nav-link" href="/gioi-thieu/">Giới thiệu</a>
-</li>
-       <li class="nav-item">
-<!--  <a href="https://app-generator.dev/product/material-kit-pro/django/"-->
-<!--     class="btn btn-sm bg-gradient-dark mb-0 me-1">-->
-<!--    <i class="fas fa-shopping-cart"></i> &lt;!&ndash; Icon giỏ hàng &ndash;&gt;-->
-<!--  </a>-->
-</li>
-
-      </ul>
-
-      <ul class="navbar-nav d-lg-block d-none">
-
       </ul>
     </div>
-
-</nav>  </div>
-<!-- End Navbar -->
+  </nav>
+</div>
 
 <!-- FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
-    .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 215, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    /* Màu nền */
+.bg-danger {
+    background-color: #8B0000 !important;
 }
 
-.navbar {
-    background: linear-gradient(135deg,  #2C2C2C, #5A2D2D); /* Đỏ nâu đậm */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
+/* Header title */
+h1.h4 {
+    font-size: 1.6rem;
+    margin-top: 5px;
 }
 
-
-.navbar-nav .nav-item .nav-link {
-    font-size: 1rem;
+/* Navbar links */
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
     font-weight: 500;
-    color: #FFD700; /* Màu vàng gold nổi bật */
+    color: #ffffff;
     transition: color 0.3s;
-    padding: 10px 15px;
-    cursor: pointer;
-
+    padding: 12px 15px;
 }
 
-.navbar-nav .nav-item .nav-link:hover {
-    color: #FFA500; /* Cam sáng */
+.navbar-nav .nav-link:hover {
+    color: #FFD700 !important;
 }
 
-.navbar-nav .nav-item .fa-chevron-down {
-    font-size: 14px;
-    transition: transform 0.3s ease;
-    color: #FFD700;
+/* Đảm bảo flex hàng ngang luôn luôn cho navbar */
+.navbar-nav {
+    flex-direction: row !important;
 }
 
-.navbar-nav .nav-item:hover .fa-chevron-down {
-    transform: rotate(180deg);
-    color: #FFA500;
-}
-
-/* Toggler */
-.custom-toggler .toggler-icon {
-    background-color: #FFD700;
-}
-.custom-toggler {
-    margin-right: 20px; /* Đẩy nút menu xa ngày tháng */
-}
-.custom-toggler:hover .toggler-icon {
-    background-color: #FFA500;
-}
-#current-date {
-    z-index: 9999;
-    position: absolute;
-    left: 95px;
-    right: auto;
-    top: 98px;
-    transform: translateY(-50%);
-    font-size: 16px;
-    font-weight: bold;
-    color: #FFD700; /* Màu vàng gold */
-    background: transparent;
-    border: none;
-    padding: 5px 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    margin-top: 10px;
-}
-@media (max-width: 400px) {
-    left: 230px;
-}
-.mb-0{
-    margin-top: 10px !important;
-}
-/* Mobile Menu */
-@media (max-width: 992px) {
-    .navbar-collapse {
-        background: rgba(139, 58, 58, 0.95);
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    }
-
-
-    .navbar {
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-    }
-
-    .navbar-nav .nav-item .nav-link {
-        padding: 4px 8px; /* Giảm padding của mục menu */
-        font-size: 0.9rem; /* Giảm kích thước chữ */
-    }
-
-    .navbar-toggler {
-        padding: 5px 8px !important; /* Thu nhỏ nút toggler */
+/* Padding cho item trên mobile */
+@media (max-width: 576px) {
+    .navbar-nav .nav-item {
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 }
-@media (max-width: 992px) {
-    .container {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+/* Navbar links */
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffffff;
+    transition: color 0.3s;
+    padding: 12px 10px;
+    display: block;
+    white-space: nowrap;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FFD700 !important;
+}
+
+/* Đảm bảo luôn hiển thị hàng ngang trên mọi kích thước */
+.navbar-nav {
+    flex-direction: row !important;
+}
+
+/* Giảm padding ở mobile nếu cần */
+@media (max-width: 576px) {
+    .navbar-nav .nav-link {
+        padding: 10px 5px;
+        font-size: 1rem;
     }
 }
+.b-800s{
+
+}
+    /* Màu nền */
+.bg-danger {
+    background-color: #8B0000 !important;
+}
+
+/* Tiêu đề */
+h1.h4 {
+    font-size: 1.6rem;
+    margin-top: 5px;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffffff;
+    transition: color 0.3s;
+    padding: 12px 10px;
+    display: block;
+    white-space: nowrap;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FFD700 !important;
+}
+
+/* Hàng ngang */
+.navbar-nav {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+        padding: 10px 5px;
+    }
+}
+
+
+
+@media (max-width: 380px) {
+  .b-800s {
+    font-size: 1.2rem; /* giảm kích thước khi dưới 800px */
+  }
+}
+
 
 </style>
-
-<script>
-  // Toggle class khi mở navbar
-  document.addEventListener("DOMContentLoaded", function () {
-      let toggler = document.querySelector(".custom-toggler");
-
-      toggler.addEventListener("click", function () {
-          this.classList.toggle("active");
-      });
-  });
-
-  document.addEventListener("DOMContentLoaded", function () {
-      let dateElement = document.getElementById("current-date");
-      let today = new Date();
-
-      let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      let formattedDate = today.toLocaleDateString('vi-VN', options);
-
-      dateElement.innerText = formattedDate;
-  });
-
-</script>

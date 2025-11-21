@@ -4,7 +4,7 @@
 
 .list-buttons .button-hre a {
     text-decoration: none;
-   color: #D4AF37;
+   color: rgb(255, 255, 255);
      background: #2C2C2C; ;
     padding: 6px 0px;
     width: 100%;
@@ -47,10 +47,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-     background: linear-gradient(135deg,  #2C2C2C, #5A2D2D);
+     background: rgb(125, 0, 0);
     padding: 10px 20px;
     border-radius: 5px;
-   color: #D4AF37;
+   color: rgb(255, 255, 255);
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -61,10 +61,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-     background: linear-gradient(135deg,  #2C2C2C, #5A2D2D);
+     background: rgb(125, 0, 0);
     padding: 10px 20px;
     border-radius: 5px;
-   color: #D4AF37;
+   color: rgb(255, 255, 255);
     font-weight: bold;
 
 }
@@ -85,7 +85,7 @@
 }
 
 .block-title-custom .viewmore {
-    color: #D4AF37;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 14px;
     transition: 0.3s;
@@ -95,7 +95,7 @@
     text-decoration: underline;
 }
 .card-title :hover{
-    color: #D4AF37;
+    color: rgb(255, 255, 255);
 }
 a {
     text-decoration: none;

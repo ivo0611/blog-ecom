@@ -32,7 +32,7 @@ USE_I18N = True
 USE_L10N = True
 INSTALLED_APPS = [
     "mddq.home",
-    "blog",
+    "mddq.blog",
 "django_quill",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",

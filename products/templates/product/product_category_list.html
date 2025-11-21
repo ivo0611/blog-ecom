@@ -1,0 +1,491 @@
+{% load static %}
+{% load wagtailimages_tags %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+    <meta name="google-site-verification" content="MbqEHNd1d43NTKU-n7mkXaPsMHtNHU-cKP40ZEfU9qo"/>
+    <title>Mai Hoa Dịch Quán - Tìm Hiểu Về Các Bài Viết Tâm Linh Và Dự Đoán</title>
+    <meta name="description" content="Mai Hoa Dịch Quán cung cấp các bài viết về tâm linh, dự đoán tương lai, và phân tích số học. Khám phá các kiến thức về Dịch học, Tứ trụ, và cách áp dụng chúng vào cuộc sống.">
+    <meta name="keywords" content="Mai Hoa Dịch Quán, Dịch học, Tứ trụ, dự đoán tương lai, số học, tâm linh, chiêm tinh học">
+    <meta property="og:title" content="Mai Hoa Dịch Quán - Khám Phá Dịch Học Và Tâm Linh">
+    <meta property="og:description" content="Cập nhật các bài viết về Dịch học, phân tích số học và dự đoán tương lai. Hãy cùng tìm hiểu về Tứ trụ và các phương pháp tâm linh cổ truyền.">
+    <meta property="og:image" content="https://maihoadichquan.vn/static/assets/img/home-banner2.jpg">
+    <meta property="og:url" content="https://maihoadichquan.vn/">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'home/css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* CSS cho Filter Panel trên Mobile */
+        body.filter-open {
+            overflow: hidden;
+        }
+
+        .filter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1040;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .filter-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 991.98px) {
+            .filter-sidebar {
+                position: fixed;
+                top: 0;
+                left: -320px; /* Bắt đầu bên ngoài màn hình */
+                width: 300px;
+                max-width: 85%;
+                height: 100vh;
+                z-index: 1050;
+                background-color: #fff;
+                transition: left 0.35s ease-in-out;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .filter-sidebar.active {
+                left: 0; /* Trượt vào trong màn hình */
+                box-shadow: 0 0 20px rgba(0,0,0,0.25);
+            }
+
+            .filter-content {
+                flex-grow: 1;
+                overflow-y: auto;
+            }
+        }
+
+        .cursor-pointer { cursor: pointer; }
+
+        .sort-option.active, .mobile-sort-option.active {
+            color: var(--bs-primary) !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    {% include "home/layout/navbar.html" %}
+
+    <div class="filter-overlay" id="filterOverlay"></div>
+
+    <main class="py-4" style="background-color: #f9f9f9;">
+        <div class="container">
+            <div class="row">
+                <aside class="col-lg-3">
+                    <div class="filter-sidebar bg-white border rounded" id="mobileFilterPanel">
+                        <div class="d-flex d-lg-none justify-content-between align-items-center p-3 border-bottom bg-light">
+                            <div class="fw-bold"><i class="fas fa-filter me-2"></i>Bộ lọc</div>
+                            <button class="btn-close" id="closeMobileFilter" aria-label="Đóng"></button>
+                        </div>
+
+                        <div class="filter-content">
+                            <div class="d-lg-none p-3 border-bottom">
+                                <div class="fw-bold mb-2">Sắp xếp</div>
+                                <div class="list-unstyled mb-0" id="mobileSortOptions">
+                                    <div class="py-1 cursor-pointer mobile-sort-option" data-value="manual">Sản phẩm nổi bật</div>
+                                    <div class="py-1 cursor-pointer mobile-sort-option" data-value="price-ascending">Giá: Tăng dần</div>
+                                    <div class="py-1 cursor-pointer mobile-sort-option" data-value="price-descending">Giá: Giảm dần</div>
+                                    <div class="py-1 cursor-pointer mobile-sort-option" data-value="title-ascending">Tên: A-Z</div>
+                                    <div class="py-1 cursor-pointer mobile-sort-option" data-value="title-descending">Tên: Z-A</div>
+                                    <div class="py-1 cursor-pointer mobile-sort-option" data-value="created-ascending">Cũ nhất</div>
+                                    <div class="py-1 cursor-pointer mobile-sort-option" data-value="created-descending">Mới nhất</div>
+                                    <div class="py-1 cursor-pointer mobile-sort-option" data-value="best-selling">Bán chạy nhất</div>
+                                </div>
+                            </div>
+
+                            <div class="p-3 border-bottom">
+                                <div class="fw-bold mb-2">Lọc giá</div>
+                                <form id="priceFilterForm">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input price-filter" type="checkbox" id="price1" value="0-1000000">
+                                        <label class="form-check-label" for="price1">Dưới 1.000.000₫</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input price-filter" type="checkbox" id="price2" value="1000000-2000000">
+                                        <label class="form-check-label" for="price2">1.000.000₫ - 2.000.000₫</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input price-filter" type="checkbox" id="price3" value="2000000-3000000">
+                                        <label class="form-check-label" for="price3">2.000.000₫ - 3.000.000₫</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input price-filter" type="checkbox" id="price4" value="3000000-4000000">
+                                        <label class="form-check-label" for="price4">3.000.000₫ - 4.000.000₫</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input price-filter" type="checkbox" id="price5" value="4000000-Infinity">
+                                        <label class="form-check-label" for="price5">Trên 4.000.000₫</label>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="p-3">
+                                <div class="fw-bold mb-2">Phân loại sản phẩm</div>
+                                <div class="list-unstyled mb-0">
+                                    <div class="py-1"><a href="/linh-vat" class="text-decoration-none text-dark d-block"><i class="fas fa-dragon me-2"></i>Linh Vật</a></div>
+                                    <div class="py-1"><a href="/vong-tay" class="text-decoration-none text-dark d-block"><i class="fas fa-circle me-2"></i>Vòng tay</a></div>
+                                    <div class="py-1"><a href="/day-chuyen" class="text-decoration-none text-dark d-block"><i class="fas fa-link me-2"></i>Dây Chuyền</a></div>
+                                    <div class="py-1"><a href="/nhan" class="text-decoration-none text-dark d-block"><i class="fas fa-ring me-2"></i>Nhẫn</a></div>
+                                    <div class="py-1"><a href="/do-trang-tri-kieu-phong-thuy" class="text-decoration-none text-dark d-block"><i class="fas fa-home me-2"></i>Đồ Trang Trí</a></div>
+                                    <div class="py-1"><a href="/vat-pham-phong-thuy" class="text-decoration-none text-dark d-block fw-bold"><i class="fas fa-th-large me-2"></i>Tất cả</a></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex d-lg-none p-3 border-top bg-light">
+                            <button class="btn btn-outline-secondary flex-fill me-2" id="clearFiltersBtn"><i class="fas fa-eraser me-2"></i>Xóa lọc</button>
+                            <button class="btn btn-primary flex-fill" id="applyFiltersBtn"><i class="fas fa-check me-2"></i>Áp dụng</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="col-lg-9">
+                    <section class="bg-white rounded shadow-sm mb-4 p-4">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap">
+                            <div class="flex-grow-1 mb-2">
+                                <h1 class="h2 mb-2 fw-bold">VẬT PHẨM PHONG THỦY</h1>
+                                <p class="text-muted mb-3">Khám phá bộ sưu tập vật phẩm phong thủy chất lượng cao</p>
+                                <button class="btn btn-outline-primary d-lg-none" id="toggleMobileFilter">
+                                    <i class="fas fa-filter me-2"></i>Bộ lọc & Sắp xếp
+                                </button>
+                            </div>
+
+                            <div class="dropdown d-none d-lg-block">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-sort-alpha-down me-2"></i>Sắp xếp: <span id="currentSortDesktop">Mới nhất</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" id="desktopSortOptions">
+                                    <li><a class="dropdown-item sort-option" href="#" data-value="manual">Sản phẩm nổi bật</a></li>
+                                    <li><a class="dropdown-item sort-option" href="#" data-value="price-ascending">Giá: Tăng dần</a></li>
+                                    <li><a class="dropdown-item sort-option" href="#" data-value="price-descending">Giá: Giảm dần</a></li>
+                                    <li><a class="dropdown-item sort-option" href="#" data-value="title-ascending">Tên: A-Z</a></li>
+                                    <li><a class="dropdown-item sort-option" href="#" data-value="title-descending">Tên: Z-A</a></li>
+                                    <li><a class="dropdown-item sort-option" href="#" data-value="created-ascending">Cũ nhất</a></li>
+                                    <li><a class="dropdown-item sort-option" href="#" data-value="created-descending">Mới nhất</a></li>
+                                    <li><a class="dropdown-item sort-option" href="#" data-value="best-selling">Bán chạy nhất</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="mb-4" id="activeFiltersSection" style="display: none;">
+                        <div class="bg-white rounded shadow-sm p-3">
+                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                <span class="me-2 fw-bold">Đang lọc:</span>
+                                <div id="activeFiltersContainer" class="d-flex flex-wrap gap-2"></div>
+                                <button class="btn btn-link text-danger p-0 ms-2" id="clearAllFiltersBtn">Xóa tất cả</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    {% if posts %}
+                    <section>
+                        <div class="row g-3" id="productGrid">
+                            {% for post_item in posts %}
+                            <div class="col-md-4 col-6 product-item"
+                                 data-price="{{ post_item.post.sales_price|default:post_item.post.price }}"
+                                 data-title="{{ post_item.post.title }}"
+                                 data-created="{{ post_item.post.first_published_at.isoformat }}">
+                                <div class="card h-100 shadow-sm border-0 product-card">
+                                    <a href="{{ post_item.post.url }}" class="text-decoration-none">
+                                        <div class="card-img-top overflow-hidden position-relative">
+                                            {% if post_item.post.is_sales and post_item.post.sales_price > 0 %}
+                                            <span class="badge bg-danger position-absolute top-0 end-0 m-2">Sale</span>
+                                            {% endif %}
+                                            <div class="ratio ratio-1x1">
+                                                {% if post_item.image_url %}
+                                                <img src="{{ post_item.image_url }}" class="img-fluid object-fit-cover" alt="{{ post_item.post.title }}">
+                                                {% else %}
+                                                <img src="{% static 'assets/img/placeholder.png' %}" class="img-fluid object-fit-cover" alt="{{ post_item.post.title }}">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title mb-2">
+                                            <a href="{{ post_item.post.url }}" class="text-decoration-none text-dark stretched-link">{{ post_item.post.title }}</a>
+                                        </h5>
+                                        <div class="mt-auto">
+                                            {% if post_item.post.is_sales and post_item.post.sales_price > 0 %}
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="fw-bold text-danger h5 mb-0">{{ post_item.post.sales_price|floatformat:0 }}₫</span>
+                                                <span class="text-muted text-decoration-line-through">{{ post_item.post.price|floatformat:0 }}₫</span>
+                                            </div>
+                                            {% else %}
+                                            <span class="fw-bold text-danger h5 mb-0">{{ post_item.post.price|floatformat:0 }}₫</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                    {% else %}
+                    <section class="text-center py-5">
+                        <div class="bg-white rounded shadow-sm p-5">
+                            <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                            <h4 class="text-muted">Không tìm thấy sản phẩm nào</h4>
+                            <p class="text-muted">Vui lòng thử điều chỉnh bộ lọc của bạn.</p>
+                        </div>
+                    </section>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "home/layout/footer.html" %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        class FilterManager {
+            constructor() {
+                this.DEFAULT_SORT = 'created-descending';
+                this.filters = {
+                    price: [],
+                    sort: this.DEFAULT_SORT
+                };
+
+                this.productGrid = document.getElementById('productGrid');
+                if (!this.productGrid) return;
+
+                this.products = Array.from(this.productGrid.querySelectorAll('.product-item'));
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.loadFromURL();
+                this.applyAllFilters();
+            }
+
+            bindEvents() {
+                // Mobile Panel
+                document.getElementById('toggleMobileFilter')?.addEventListener('click', () => this.openMobilePanel());
+                document.getElementById('closeMobileFilter')?.addEventListener('click', () => this.closeMobilePanel());
+                document.getElementById('filterOverlay')?.addEventListener('click', () => this.closeMobilePanel());
+
+                // Action Buttons
+                document.getElementById('applyFiltersBtn')?.addEventListener('click', () => {
+                    this.readPriceFilters();
+                    this.applyAllFilters();
+                    this.updateURL();
+                    this.closeMobilePanel();
+                });
+
+                document.getElementById('clearFiltersBtn')?.addEventListener('click', () => this.clearPriceFilters(true));
+                document.getElementById('clearAllFiltersBtn')?.addEventListener('click', () => this.clearAllFilters(true));
+
+                // Sort Options
+                document.querySelectorAll('.sort-option').forEach(el => {
+                    el.addEventListener('click', e => {
+                        e.preventDefault();
+                        this.filters.sort = el.dataset.value;
+                        this.applyAllFilters();
+                        this.updateURL();
+                    });
+                });
+
+                document.querySelectorAll('.mobile-sort-option').forEach(el => {
+                    el.addEventListener('click', () => {
+                        this.filters.sort = el.dataset.value;
+                        this.updateSortUI();
+                    });
+                });
+
+                // Price Checkboxes (don't apply immediately, just for state change on desktop)
+                document.querySelectorAll('.price-filter').forEach(checkbox => {
+                    checkbox.addEventListener('change', () => {
+                         // On desktop, some might want instant filtering.
+                         // For now, we keep it consistent: price filters are applied via button or on load.
+                         this.readPriceFilters();
+                         if (window.innerWidth >= 992) { // Instant apply on desktop
+                            this.applyAllFilters();
+                            this.updateURL();
+                         }
+                    });
+                });
+            }
+
+            // --- Mobile Panel ---
+            openMobilePanel() {
+                document.getElementById('mobileFilterPanel')?.classList.add('active');
+                document.getElementById('filterOverlay')?.classList.add('active');
+                document.body.classList.add('filter-open');
+            }
+
+            closeMobilePanel() {
+                document.getElementById('mobileFilterPanel')?.classList.remove('active');
+                document.getElementById('filterOverlay')?.classList.remove('active');
+                document.body.classList.remove('filter-open');
+            }
+
+            // --- Filter State Management ---
+            readPriceFilters() {
+                const checked = document.querySelectorAll('.price-filter:checked');
+                this.filters.price = Array.from(checked).map(cb => {
+                    const [min, max] = cb.value.split('-').map(Number);
+                    return { min, max: max || Infinity, value: cb.value, label: cb.nextElementSibling.textContent };
+                });
+            }
+
+            clearPriceFilters(apply = false) {
+                document.querySelectorAll('.price-filter').forEach(cb => cb.checked = false);
+                this.filters.price = [];
+                if (apply) {
+                    this.applyAllFilters();
+                    this.updateURL();
+                }
+            }
+
+            clearAllFilters(apply = false) {
+                this.clearPriceFilters(false); // Don't apply yet
+                this.filters.sort = this.DEFAULT_SORT;
+                if (apply) {
+                    this.applyAllFilters();
+                    this.updateURL();
+                }
+            }
+
+            removePriceFilterByValue(value) {
+                const checkbox = document.querySelector(`.price-filter[value="${value}"]`);
+                if (checkbox) checkbox.checked = false;
+                this.readPriceFilters();
+                this.applyAllFilters();
+                this.updateURL();
+            }
+
+            // --- Core Logic ---
+            applyAllFilters() {
+                // 1. Filter by price
+                let visibleProducts = this.products;
+                if (this.filters.price.length > 0) {
+                    visibleProducts = this.products.filter(product => {
+                        const price = parseFloat(product.dataset.price);
+                        return this.filters.price.some(range => price >= range.min && price < range.max);
+                    });
+                }
+
+                // Hide all, then show visible ones
+                this.products.forEach(p => p.style.display = 'none');
+                visibleProducts.forEach(p => p.style.display = 'block');
+
+                // 2. Sort the visible products
+                visibleProducts.sort((a, b) => {
+                    const priceA = parseFloat(a.dataset.price);
+                    const priceB = parseFloat(b.dataset.price);
+                    const titleA = a.dataset.title.toLowerCase();
+                    const titleB = b.dataset.title.toLowerCase();
+                    const createdA = new Date(a.dataset.created);
+                    const createdB = new Date(b.dataset.created);
+
+                    switch (this.filters.sort) {
+                        case 'price-ascending': return priceA - priceB;
+                        case 'price-descending': return priceB - priceA;
+                        case 'title-ascending': return titleA.localeCompare(titleB, 'vi');
+                        case 'title-descending': return titleB.localeCompare(titleA, 'vi');
+                        case 'created-ascending': return createdA - createdB;
+                        case 'created-descending': return createdB - createdA;
+                        // 'manual', 'best-selling' would require original order or different data attributes
+                        default: return 0;
+                    }
+                });
+
+                // 3. Re-append to DOM in sorted order
+                visibleProducts.forEach(p => this.productGrid.appendChild(p));
+
+                // 4. Update UI
+                this.updateSortUI();
+                this.updateActiveFiltersDisplay();
+            }
+
+            // --- UI Updates ---
+            updateSortUI() {
+                const activeText = document.querySelector(`.sort-option[data-value="${this.filters.sort}"]`)?.textContent || 'Mới nhất';
+                document.getElementById('currentSortDesktop').textContent = activeText;
+
+                document.querySelectorAll('.sort-option, .mobile-sort-option').forEach(el => {
+                    el.classList.toggle('active', el.dataset.value === this.filters.sort);
+                });
+            }
+
+            updateActiveFiltersDisplay() {
+                const container = document.getElementById('activeFiltersContainer');
+                const section = document.getElementById('activeFiltersSection');
+                container.innerHTML = '';
+
+                if (this.filters.price.length === 0) {
+                    section.style.display = 'none';
+                    return;
+                }
+
+                this.filters.price.forEach(filter => {
+                    const tag = document.createElement('span');
+                    tag.className = 'badge bg-primary text-white fw-normal';
+                    tag.innerHTML = `${filter.label} <i class="fas fa-times ms-1 cursor-pointer"></i>`;
+                    tag.querySelector('i').onclick = () => this.removePriceFilterByValue(filter.value);
+                    container.appendChild(tag);
+                });
+
+                section.style.display = 'block';
+            }
+
+            // --- URL Management ---
+            updateURL() {
+                const url = new URL(window.location);
+                // Price
+                if (this.filters.price.length > 0) {
+                    url.searchParams.set('price', this.filters.price.map(f => f.value).join(','));
+                } else {
+                    url.searchParams.delete('price');
+                }
+                // Sort
+                if (this.filters.sort !== this.DEFAULT_SORT) {
+                    url.searchParams.set('sort', this.filters.sort);
+                } else {
+                    url.searchParams.delete('sort');
+                }
+                history.replaceState({}, '', url);
+            }
+
+            loadFromURL() {
+                const params = new URLSearchParams(window.location.search);
+                // Load sort
+                const sortParam = params.get('sort');
+                if (sortParam) {
+                    this.filters.sort = sortParam;
+                }
+                // Load price
+                const priceParam = params.get('price');
+                if (priceParam) {
+                    const priceValues = priceParam.split(',');
+                    priceValues.forEach(value => {
+                        const checkbox = document.querySelector(`.price-filter[value="${value}"]`);
+                        if (checkbox) checkbox.checked = true;
+                    });
+                    this.readPriceFilters();
+                }
+            }
+        }
+
+        // Initialize
+        new FilterManager();
+    });
+    </script>
+</body>

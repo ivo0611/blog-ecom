@@ -33,6 +33,8 @@ USE_L10N = True
 INSTALLED_APPS = [
     "home",
     "blog",
+    "products",
+'widget_tweaks',
 "django_quill",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -117,13 +119,23 @@ WSGI_APPLICATION = "mddq.wsgi.application"
 #         'PORT': '5432',       # Cổng mặc định của PostgreSQL
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'mhdq_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'a#HK.S05/d.itIx@B1i1',
+#         'HOST': '69.62.72.89',  # hoặc IP của PostgreSQL Server
+#         'PORT': '5432',       # Cổng mặc định của PostgreSQL
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mhdq_db',
         'USER': 'postgres',
-        'PASSWORD': 'a#HK.S05/d.itIx@B1i1',
-        'HOST': '69.62.72.89',  # hoặc IP của PostgreSQL Server
+        'PASSWORD': '123456aA@',
+        'HOST': 'localhost',  # hoặc IP của PostgreSQL Server
         'PORT': '5432',       # Cổng mặc định của PostgreSQL
     }
 }

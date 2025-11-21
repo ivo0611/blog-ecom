@@ -1,0 +1,894 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="product-detail-container">
+    <div class="product-detail">
+        <div class="image-container">
+            <button id="prev-image" class="image-nav left"><i class="fas fa-chevron-left"></i></button>
+
+            {% if page.thumbnail %}
+                <img id="main-image" src="{{ page.thumbnail.file.url }}"
+                     alt="{{ page.title }}" class="img-fluid">
+            {% else %}
+                <img id="main-image" src="/static/images/default-product.png"  alt="{{ page.title }}" class="img-fluid">
+            {% endif %}
+
+            </div>
+
+        <div class="product-info">
+            <h1 class="product-title">{{ page.title }}</h1>
+
+            <p class="category">
+                <strong>Danh mục:</strong>
+                {% for category in page.categories.all %}
+                    {{ category.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+
+            <p class="purchase-count">
+                <span class="rating-value" style="font-weight: bold; color: #d9534f;font-size: 18px;">
+                    {{ page.purchase_count }} <strong>đã bán</strong>
+                </span>
+            </p>
+
+            <p class="stock-status">
+                <strong>Tình trạng: </strong>
+                {% if page.in_stock %}
+                    <span class="in-stock">Còn hàng</span>
+                {% else %}
+                    <span class="out-of-stock">Hết hàng</span>
+                {% endif %}
+            </p>
+
+            <p class="price">
+                {% if page.is_sales %}
+                    <span class="original-price">{{ page.price }} VNĐ</span>
+                    <span class="sales-price">{{ page.sales_price }} VNĐ</span>
+                {% else %}
+                    <span class="normal-price">{{ page.price }} VNĐ</span>
+                {% endif %}
+            </p>
+
+            <div class="product-description">
+                {{ page.search_description }}
+            </div>
+
+            <div class="buy-buttons">
+                <a href="https://zalo.me/0923933993" class="buy-now-btn"> <i class="fa fa-bolt"></i> MUA NGAY
+                </a>
+                <a href="https://zalo.me/0923933993" class="add-to-cart-btn"> <i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ
+                </a>
+            </div>
+
+            </div>
+    </div>
+
+<!--    {% if page.attributes %}-->
+<!--        <div class="specifications-header">-->
+<!--            <h2>Thông tin vật phẩm</h2>-->
+<!--        </div>-->
+
+
+<!--    {% endif %}-->
+
+    <div class="specifications-header">
+        <h2>Mô tả vật phẩm</h2>
+    </div>
+    <div class="entry-content post-content">
+        {{ page.body.html|safe }}
+    </div>
+
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const starRating = document.querySelector('.star-rating');
+        if (starRating) {
+            const stars = starRating.querySelectorAll('.star');
+            const ratingValueInput = document.getElementById('rating-value');
+            const ratingText = document.getElementById('rating-text');
+
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const value = parseInt(this.dataset.value);
+                    ratingValueInput.value = value;
+                    ratingText.textContent = `Bạn đã chọn ${value} sao`;
+                    stars.forEach((s, index) => {
+                        s.classList.toggle('active', index < value);
+                    });
+                });
+
+                star.addEventListener('mouseover', function() {
+                    const value = parseInt(this.dataset.value);
+                    stars.forEach((s, index) => {
+                        s.classList.toggle('hover', index < value);
+                    });
+                });
+
+                starRating.addEventListener('mouseleave', function() {
+                    stars.forEach(star => star.classList.remove('hover'));
+                });
+            });
+
+            // Duy trì trạng thái đánh giá nếu có lỗi form
+            const initialRating = ratingValueInput.value;
+            stars.forEach((star, index) => {
+                star.classList.toggle('active', index < initialRating);
+            });
+            if (initialRating > 0) {
+                ratingText.textContent = `Bạn đã chọn ${initialRating} sao`;
+            }
+        }
+    });
+</script>
+<style>
+    .product-detail-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-detail {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+}
+
+.product-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.thumbnail-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.thumbnail-image:hover {
+    transform: scale(1.1);
+    border-color: #ff9800;
+}
+
+.product-info {
+    flex: 1;
+
+}
+
+.product-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #110909;
+
+    margin-bottom: 15px; /* Tăng khoảng cách phía dưới */
+    letter-spacing: 1.5px;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    display: block; /* Đảm bảo tiêu đề không bị co lại */
+    padding-bottom: 10px; /* Thêm khoảng cách bên dưới */
+    line-height: 1.3;
+}
+.product-info {
+}
+
+
+
+
+@media (max-width: 768px) {
+    .product-title {
+        font-size: 1.6rem; /* Giảm một chút trên mobile để không quá to */
+    }
+}
+
+.category a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.category a:hover {
+    text-decoration: underline;
+}
+
+.ratings i {
+    color: #ffbc00;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: #d9534f;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-right: 10px;
+}
+
+.sales-price {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+
+.buy-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.buy-now-btn, .add-to-cart-btn {
+    display: inline-block;
+    padding: 12px 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.buy-now-btn {
+    background: #e60000;
+    color: white;
+}
+
+.add-to-cart-btn {
+    background: #ff9800;
+    color: white;
+}
+
+
+/*.add-to-cart-btn {*/
+/*    display: block;*/
+/*    background-color: #ff9800;*/
+/*    color: white;*/
+/*    padding: 12px;*/
+/*    text-align: center;*/
+/*    font-size: 1.2rem;*/
+/*    font-weight: bold;*/
+/*    border-radius: 8px;*/
+/*    transition: background-color 0.3s ease;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*.add-to-cart-btn:hover {*/
+/*    background-color: #e67e22;*/
+/*}*/
+.guarantee-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.guarantee-item {
+    text-align: center;
+    width: 22%;
+}
+
+.guarantee-item i {
+    font-size: 2rem;
+    color: #ff9800;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.guarantee-item p {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.share-links {
+    margin-top: 15px;
+}
+
+.share-links .social-icon {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.share-links .facebook { background: #3b5998; color: white; }
+.share-links .zalo { background: #0068ff; color: white; }
+
+.specifications-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.specifications-table th, .specifications-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.specifications-header {
+    background: linear-gradient(to right, #f8f8f8, #eaeaea);
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .product-detail {
+        flex-direction: column;
+    }
+}.share-section {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+     margin-top: 10px;
+     font-size: 14px;
+ }
+
+.share-section p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 13px;
+    color: #333;
+}
+
+.share-section .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.share-section .social-icon i {
+    font-size: 14px;
+}
+
+.share-section .facebook {
+    background: #1877f2;
+}
+
+.share-section .twitter {
+    background: #1da1f2;
+}
+
+.share-section .telegram {
+    background: #0088cc;
+}
+
+.share-section .social-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+
+.contact-share-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.contact-section,
+.share-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.contact-button,
+.social-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.contact-button i,
+.social-icon i {
+    font-size: 18px;
+}
+
+.contact-button.zalo {
+    background: #0088cc;
+    color: white;
+}
+
+.contact-button.phone {
+    background: #28a745;
+    color: white;
+}
+
+.social-icon.facebook {
+    background: #1877f2;
+    color: white;
+}
+
+.social-icon.zalo {
+    background: #0088cc;
+    color: white;
+}
+
+.social-icon.copy-link {
+    background: #555;
+    color: white;
+}
+
+.contact-button:hover,
+.social-icon:hover {
+    opacity: 0.8;
+}
+
+
+.social-icon.instagram {
+    background-color: #E4405F;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 5px;
+}
+.social-icon.instagram:hover {
+    background-color: #D73556;
+}
+
+
+.social-icon.telegram {
+    background-color: #0088cc;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 5px;
+}
+.social-icon.telegram:hover {
+    background-color: #0077b5;
+}
+.bestseller-label {
+    background: #e60000;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+
+.commitments {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.commit-item {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.commit-item i {
+    color: #ff9800;
+    font-size: 1.2rem;
+}
+.image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Đảm bảo ảnh không bị co lại */
+    max-width: 500px; /* Tuỳ chỉnh theo giao diện */
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    display: block;
+}
+
+.image-nav {
+    position: absolute;
+    top: 250px;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    opacity: 0; /* Ban đầu ẩn nút */
+}
+
+.image-container:hover .image-nav {
+    opacity: 1; /* Hiện nút khi hover vào ảnh */
+}
+
+.image-nav:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.image-nav.left {
+    left: 10px;
+}
+
+.image-nav.right {
+    right: 10px;
+}
+
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.star {
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.star.selected,
+.star:hover,
+.star:hover ~ .star {
+    color: #ffcc00;
+}
+
+.rating-feedback {
+    display: inline-block;
+    background-color: #b52b00;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    display: none;
+}
+
+
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 5px;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 30px;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #ffcc00;
+}
+
+
+.product-review-container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    margin-top: 20px;
+}
+
+.rating-summary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+
+
+.average-rating {
+    font-size: 40px;
+    font-weight: bold;
+    color: #ff9900;
+    display: flex;
+    align-items: center;
+}
+
+.average-rating i {
+    font-size: 32px;
+    margin-left: 5px;
+}
+
+.rating-breakdown {
+    flex: 1;
+}
+
+.rating-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.bar {
+    flex: 1;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    margin: 0 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    background: #ff9900;
+    border-radius: 5px;
+}
+
+.review-form-container {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-danger {
+    background-color: #ff4757;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.review-list {
+    margin-top: 20px;
+}
+
+.review-item {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    align-items: flex-start;
+}
+
+.review-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    margin-right: 15px;
+}
+
+.review-content-wrapper {
+    flex: 1;
+}
+
+.reviewer-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.review-rating .fa {
+    color: #ff9900;
+    margin-right: 2px;
+}
+
+.review-date {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.admin-reply {
+    background: #f5f5f5;
+    padding: 10px;
+    border-left: 4px solid #ff9900;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.admin-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.admin-badge {
+    background: #ff9900;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.admin-content {
+    margin: 5px 0;
+    color: #555;
+}
+
+.admin-date {
+    font-size: 12px;
+    color: #777;
+}
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.star {
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.star.selected,
+.star:hover,
+.star:hover ~ .star {
+    color: #ffcc00;
+}
+
+.rating-feedback {
+    display: inline-block;
+    background-color: #b52b00;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    display: none;
+}
+
+
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 5px;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 30px;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #ffcc00;
+}
+
+
+.product-review-container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    margin-top: 20px;
+}
+
+.rating-summary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+
+
+.average-rating {
+    font-size: 40px;
+    font-weight: bold;
+    color: #ff9900;
+    display: flex;
+    align-items: center;
+}
+
+.average-rating i {
+    font-size: 32px;
+    margin-left: 5px;
+}
+
+.rating-breakdown {
+    flex: 1;
+}
+
+.rating-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+@media (max-width: 768px) {
+    .image-nav {
+        position: absolute;
+        top: 150px;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 24px;
+        border-radius: 50%;
+        transition: all 0.3s;
+        opacity: 0; /* Ban đầu ẩn nút */
+    }
+
+}
+</style>
+{% endblock content %}

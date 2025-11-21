@@ -1,0 +1,745 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lá số Tứ Trụ - Bát Tự Chính Xác</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="{% static 'css/laso_tutru.css' %}" rel="stylesheet">
+    <style>
+        /* Custom styles for better aesthetics */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container-fluid {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            overflow: hidden; /* Ensure content stays within rounded corners */
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-bottom: none;
+            padding: 1rem 1.5rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card-header h1, .card-header h5, .card-header h6 {
+            color: white;
+            margin-bottom: 0;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #343a40;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-lg {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+        }
+        .btn-block {
+            width: 100%;
+            margin-bottom: 10px; /* Space out buttons in small screens */
+        }
+        .laso-table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            border-collapse: separate; /* For rounded corners on cells */
+            border-spacing: 0;
+        }
+        .laso-table th, .laso-table td {
+            padding: 0.75rem;
+            vertical-align: middle;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+        .laso-table thead th {
+            background-color: #e9ecef;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: bold;
+            color: #495057;
+        }
+        .laso-table tbody tr:nth-of-type(odd) {
+            background-color: #fcfdff;
+        }
+        .laso-table tbody tr:hover {
+            background-color: #e2f0ff;
+        }
+        .laso-table .chu-tinh th, .laso-table .chu-tinh td {
+            background-color: #d1ecf1; /* Light info background */
+            font-weight: bold;
+        }
+        .laso-table .can-tang div {
+            padding: 2px 0;
+            font-size: 0.85em;
+        }
+        .laso-result-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .laso-result-container .card-body ul {
+            padding-left: 0;
+        }
+        .laso-result-container .card-body ul li {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        .dv {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #f2f2f2;
+        }
+        .dv p {
+            margin-bottom: 5px;
+        }
+        .dv hr {
+            border-top: 1px solid #ccc;
+            margin: 10px 0;
+        }
+        .dv2 {
+            padding: 5px;
+            background-color: #fafafa;
+            border-radius: 5px;
+        }
+        .text-danger {
+            color: #dc3545 !important;
+        }
+        .text-success-custom {
+            color: #28a745 !important;
+        }
+        .text-warning-custom {
+            color: #ffc107 !important;
+        }
+        .breadcrumb-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .breadcrumb-item.active {
+            color: #6c757d;
+        }
+        .modal-header {
+            background-color: #007bff;
+            color: white;
+            border-bottom: none;
+        }
+        .modal-title {
+            color: white;
+        }
+        .modal-footer .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        /* Ngu Hanh Colors (Example - you need to define these in laso_tutru.css based on your actual data) */
+        .moc { color: green; }
+        .hoa { color: red; }
+        .tho { color: brown; }
+        .kim { color: grey; }
+        .thuy { color: blue; }
+        .font20 { font-size: 1.25rem; }
+        .uppercase { text-transform: uppercase; }
+
+        /* Responsive adjustments */
+        @media (min-width: 992px) {
+            .btn-block {
+                width: auto; /* Remove full width on larger screens for action buttons */
+                margin-bottom: 0;
+            }
+            .col-md-6 {
+                flex: 0 0 auto;
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav aria-label="breadcrumb" class="my-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Lá số Tứ Trụ</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-8">
+                {% if not render %}
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="h3 mb-0">Tính Lá số Tứ Trụ - Bát Tự</h1>
+                        <i class="fas fa-seedling fa-2x"></i> </div>
+                    <div class="card-body">
+                        <form method="get" id="batTuForm">
+                            <div class="mb-3">
+                                <label for="{{ form.hoten.id_for_label }}" class="form-label"><i class="fas fa-user me-2"></i>{{ form.hoten.label }} <span class="text-danger">*</span></label>
+                                {{ form.hoten|add_class:"form-control" }}
+                                {% if form.hoten.errors %}
+                                    <div class="text-danger small mt-1">{{ form.hoten.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label"><i class="fas fa-calendar-alt me-2"></i>Ngày sinh <span class="text-danger">*</span></label>
+                                <div class="row g-2">
+                                    <div class="col-4">
+                                        <select name="ngay" class="form-select" required>
+                                            <option value="">Ngày</option>
+                                            {% for day in day_range %}
+                                                <option value="{{ day|stringformat:'02d' }}"
+                                                    {% if form.data.ngay == day|stringformat:'02d' %}selected{% endif %}>
+                                                    {{ day|stringformat:'02d' }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <select name="thang" class="form-select" required>
+                                            <option value="">Tháng</option>
+                                            {% for month in month_range %}
+                                                <option value="{{ month|stringformat:'02d' }}"
+                                                    {% if form.data.thang == month|stringformat:'02d' %}selected{% endif %}>
+                                                    {{ month|stringformat:'02d' }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <select name="nam" class="form-select" required>
+                                            <option value="">Năm</option>
+                                            {% for year in year_range %}
+                                                <option value="{{ year }}"
+                                                    {% if form.data.nam == year|stringformat:'s' or year == 1991 %}selected{% endif %}>
+                                                    {{ year }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label"><i class="fas fa-clock me-2"></i>Giờ sinh <span class="text-danger">*</span></label>
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <select name="gio" class="form-select" required>
+                                            <option value="">Giờ sinh</option>
+                                            {% for hour in hour_range %}
+                                                <option value="{{ hour|stringformat:'02d' }}"
+                                                    {% if form.data.gio == hour|stringformat:'02d' %}selected{% endif %}>
+                                                    {{ hour|stringformat:'02d' }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <select name="phut" class="form-select">
+                                            <option value="">Phút sinh (Tùy chọn)</option>
+                                            {% for minute in minute_range %}
+                                                <option value="{{ minute|stringformat:'02d' }}"
+                                                    {% if form.data.phut == minute|stringformat:'02d' %}selected{% endif %}>
+                                                    {{ minute|stringformat:'02d' }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label"><i class="fas fa-venus-mars me-2"></i>Giới tính <span class="text-danger">*</span></label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gioitinh" id="genderNam" value="nam"
+                                               {% if form.data.gioitinh == 'nam' or not form.data.gioitinh %}checked{% endif %}>
+                                        <label class="form-check-label" for="genderNam">Nam</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gioitinh" id="genderNu" value="nu"
+                                               {% if form.data.gioitinh == 'nu' %}checked{% endif %}>
+                                        <label class="form-check-label" for="genderNu">Nữ</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-scroll me-2"></i>Mở Lá Số
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row mt-4 gx-3">
+                    <div class="col-md-6">
+                        <a href="#bookingModal" class="btn btn-outline-primary btn-block" data-bs-toggle="modal">
+                            <i class="fas fa-calendar-check me-2"></i>Đặt lịch xem chi tiết
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-warning btn-block" data-bs-toggle="modal" data-bs-target="#detailModal">
+                            <i class="fas fa-file-alt me-2"></i>Nhận file luận giải chi tiết (Có phí)
+                        </button>
+                    </div>
+                </div>
+
+                {% else %}
+                <div class="laso-result-container">
+                    <div class="card mb-4 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 text-center border-end">
+                                    <img src="{% static 'images/logo-1.png' %}" alt="Logo" class="img-fluid mb-2" style="max-height: 80px;">
+                                    <h5 class="fw-bold text-primary">Mệnh Bàn {% if form_data.gioitinh == 'nam' %}Càn Tạo{% else %}Khôn Tạo{% endif %}</h5>
+                                </div>
+                                <div class="col-md-8">
+                                    <ul class="list-unstyled mb-0 ps-3">
+                                        <li><strong><i class="fas fa-user-circle me-2 text-info"></i>Họ và tên:</strong> {{ ho_ten }} / <span class="text-success-custom">{{ bat_tu.menh }}</span></li>
+                                        <li><strong><i class="fas fa-calendar-day me-2 text-info"></i>Dương / Âm lịch:</strong>
+                                            <span class="text-danger fw-bold">{{ gio_phut_sinh }} {{ ngay_sinh_full }}</span>
+                                            <small class="ms-2 text-muted">({{ tiet_khi.name }})</small>
+                                        </li>
+                                        {% if cung_menh %}
+                                        <li><strong><i class="fas fa-seedling me-2 text-info"></i>Thai nguyên:</strong> <span class="text-primary">{{ cung_menh.thai_nguyen.can }} {{ cung_menh.thai_nguyen.chi }}</span></li>
+                                        <li><strong><i class="fas fa-star me-2 text-info"></i>Cung mệnh:</strong> <span class="text-primary">{{ cung_menh.cung_menh.can }} {{ cung_menh.cung_menh.chi }}</span></li>
+                                        {% endif %}
+                                        <li><strong><i class="fas fa-compass me-2 text-info"></i>Mệnh quái:</strong>
+                                            <span class="badge bg-primary fs-6 py-1 px-2">{{ bat_tu.menh }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered laso-table text-center">
+                            <thead>
+                                <tr class="bg-light">
+                                    <th></th>
+                                    <th>Năm sinh<br>(Niên trụ)</th>
+                                    <th>Tháng sinh<br>(Nguyệt trụ)</th>
+                                    <th>Ngày sinh<br>(Nhật trụ)</th>
+                                    <th>Giờ sinh<br>(Thời trụ)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th class="table-secondary">DƯƠNG LỊCH</th>
+                                    <td>{{ form_data.nam }}</td>
+                                    <td>{{ form_data.thang }}</td>
+                                    <td>{{ form_data.ngay }}</td>
+                                    <td>{{ gio_phut_sinh }}</td>
+                                </tr>
+                                <tr class="chu-tinh">
+                                    <th class="table-info">CHỦ TINH</th>
+                                    <td>{{ chu_tinh.nam }}</td>
+                                    <td>{{ chu_tinh.thang }}</td>
+                                    <td class="text-danger fw-bold">NHẬT CHỦ</td>
+                                    <td>{{ chu_tinh.gio }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="table-primary text-white">BÁT TỰ</th>
+                                    <td>
+                                        <div class="font20 uppercase {{ bat_tu.nam.can.ngu_hanh }} fw-bold">{{ bat_tu.nam.can.name }}</div>
+                                        <div class="font20 uppercase {{ bat_tu.nam.chi.ngu_hanh }}">{{ bat_tu.nam.chi.name }}</div>
+                                    </td>
+                                    <td>
+                                        <div class="font20 uppercase {{ bat_tu.thang.can.ngu_hanh }} fw-bold">{{ bat_tu.thang.can.name }}</div>
+                                        <div class="font20 uppercase {{ bat_tu.thang.chi.ngu_hanh }}">{{ bat_tu.thang.chi.name }}</div>
+                                    </td>
+                                    <td>
+                                        <div class="font20 uppercase {{ bat_tu.ngay.can.ngu_hanh }} fw-bold">{{ bat_tu.ngay.can.name }}</div>
+                                        <div class="font20 uppercase {{ bat_tu.ngay.chi.ngu_hanh }}">{{ bat_tu.ngay.chi.name }}</div>
+                                    </td>
+                                    <td>
+                                        <div class="font20 uppercase {{ bat_tu.gio.can.ngu_hanh }} fw-bold">{{ bat_tu.gio.can.name }}</div>
+                                        <div class="font20 uppercase {{ bat_tu.gio.chi.ngu_hanh }}">{{ bat_tu.gio.chi.name }}</div>
+                                    </td>
+                                </tr>
+                                {% if can_tang %}
+                                <tr class="can-tang">
+                                    <th class="table-light">CAN TÀNG</th>
+                                    <td>
+                                        {% for can in can_tang.nam %}
+                                            <div class="ct uppercase {{ can|lower }}">{{ can }}</div>
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for can in can_tang.thang %}
+                                            <div class="ct uppercase {{ can|lower }}">{{ can }}</div>
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for can in can_tang.ngay %}
+                                            <div class="ct uppercase {{ can|lower }}">{{ can }}</div>
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for can in can_tang.gio %}
+                                            <div class="ct uppercase {{ can|lower }}">{{ can }}</div>
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% if nhat_kien %}
+                                <tr>
+                                    <th class="table-secondary">NHẬT KIẾN</th>
+                                    <td>{{ nhat_kien.nam }}</td>
+                                    <td>{{ nhat_kien.thang }}</td>
+                                    <td>{{ nhat_kien.ngay }}</td>
+                                    <td>{{ nhat_kien.gio }}</td>
+                                </tr>
+                                {% endif %}
+                                {% if nguyet_kien %}
+                                <tr>
+                                    <th class="table-secondary">NGUYỆT KIẾN</th>
+                                    <td>{{ nguyet_kien.nam }}</td>
+                                    <td>{{ nguyet_kien.thang }}</td>
+                                    <td>{{ nguyet_kien.ngay }}</td>
+                                    <td>{{ nguyet_kien.gio }}</td>
+                                </tr>
+                                {% endif %}
+                                {% if vts_tru %}
+                                <tr>
+                                    <th class="table-secondary">TRỤ</th>
+                                    <td>{{ vts_tru.nam }}</td>
+                                    <td>{{ vts_tru.thang }}</td>
+                                    <td>{{ vts_tru.ngay }}</td>
+                                    <td>{{ vts_tru.gio }}</td>
+                                </tr>
+                                {% endif %}
+                                {% if nap_am %}
+                                <tr>
+                                    <th class="table-secondary">NẠP ÂM</th>
+                                    <td>{{ nap_am.nam.menh }}</td>
+                                    <td>{{ nap_am.thang.menh }}</td>
+                                    <td>{{ nap_am.ngay.menh }}</td>
+                                    <td>{{ nap_am.gio.menh }}</td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {% if dai_van %}
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>ĐẠI VẬN & TIỂU VẬN</h5>
+                            <small>Đại vận bắt đầu lúc <strong>{{ dai_van.tuoi }} tuổi {{ dai_van.thang }} tháng {{ dai_van.ngay }} ngày</strong>.
+                            Năm bắt đầu đại vận: <strong>{{ dai_van.nam_bd_dai_van }}</strong></small>
+                        </div>
+                        <div class="card-body">
+                            {% if dai_van_list %}
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+                                {% for dv in dai_van_list|slice:":4" %}
+                                <div class="col">
+                                    <div class="dv text-center border p-3 rounded shadow-sm h-100 d-flex flex-column justify-content-between">
+                                        <div>
+                                            <p class="mb-1"><strong class="text-danger fs-5">{{ dv.daivan.year }} - {{ dv.daivan.tuoi }}t</strong></p>
+                                            <p class="mb-2"><strong><span class="text-primary">{{ dv.daivan.can }} {{ dv.daivan.chi }}</span> - <span class="text-secondary">{{ dv.daivan.thapthan }}</span></strong></p>
+                                        </div>
+                                        <hr class="my-2">
+                                        <div class="dv2 text-start small">
+                                            {% for year, tv in dv.nam.items|slice:":5" %}
+                                                <p class="mb-0">{{ year }} - <span class="fw-bold">{{ tv.can_chi }}</span> - {{ tv.thapthan }}</p>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-book-open me-2"></i>Luận giải Lá Số</h5>
+                        </div>
+                        <div class="card-body">
+                            {% if do_vuong_suy %}
+                            <div class="laso-result alert alert-info py-3">
+                                <p class="mb-2">Sau khi xét các mối tương tác sự, xung, khắc, trợ, sinh, hao, hợp, hóa, tám thiên can địa chi của bốn trụ năm, tháng, ngày, giờ sinh. Qua công thức tính độ vượng của ngũ hành:</p>
+                                <p class="fw-bold fs-5 text-success-custom mb-2"><i class="fas fa-check-circle me-2"></i>{{ do_vuong_suy.ban_menh.text }}</p>
+                                <p class="fw-bold mb-2"><i class="fas fa-lightbulb me-2 text-warning-custom"></i>Dụng Thần dự đoán là <span class="text-primary">{{ do_vuong_suy.ban_menh.dung_than|title }}</span>, Hỷ Thần là <span class="text-primary">{{ do_vuong_suy.ban_menh.hy_than|join:", "|title }}</span> tùy vận.</p>
+                                {% if do_vuong_suy.ban_menh.note %}
+                                <p class="small text-muted mb-2"><i class="fas fa-info-circle me-1"></i>{{ do_vuong_suy.ban_menh.note }}</p>
+                                {% endif %}
+                                <p class="fw-bold text-danger mb-0"><i class="fas fa-exclamation-triangle me-2"></i><em>Công cụ khi tính toán chỉ chính xác 60% liên hệ với chuyên gia sẽ chính xác được 90%</em></p>
+                            </div>
+                            {% endif %}
+
+                            <h4 class="mt-4 text-primary"><i class="fas fa-chart-pie me-2"></i>Các Phần Luận Giải Chi Tiết</h4>
+                            <hr>
+
+                            <div class="mb-4">
+                                <h6 class="text-secondary"><i class="fas fa-lightbulb me-2"></i>1. TỔNG QUAN ƯU KHUYẾT ĐIỂM CỦA MỆNH CHỦ</h6>
+                                <p>Đây là phần luận giải chi tiết về ưu khuyết điểm của mệnh chủ dựa trên bát tự. Phân tích tính cách, tiềm năng, và những thách thức có thể gặp phải trong cuộc sống.</p>
+                            </div>
+
+                            <div class="mb-4">
+                                <h6 class="text-secondary"><i class="fas fa-hourglass-half me-2"></i>2. THỜI VẬN VƯỢNG SUY</h6>
+                                <p>Phân tích thời vận vượng suy theo từng giai đoạn của cuộc đời, giúp bạn nắm bắt cơ hội và vượt qua khó khăn. Dự báo các giai đoạn thuận lợi và bất lợi.</p>
+                            </div>
+
+                            <div class="mb-4">
+                                <h6 class="text-secondary"><i class="fas fa-users me-2"></i>3. TỔ NGHIỆP</h6>
+                                <p>Luận giải về tổ nghiệp và gia đình, mối liên hệ giữa bản thân với tiền vận của gia đình, những ảnh hưởng từ thế hệ trước đến cuộc sống hiện tại.</p>
+                            </div>
+
+                            <div class="mb-4">
+                                <h6 class="text-secondary"><i class="fas fa-briefcase me-2"></i>4. SỰ NGHIỆP & TÀI LỘC</h6>
+                                <p>Đánh giá con đường sự nghiệp, tiềm năng tài chính và các cơ hội phát triển trong công việc, kinh doanh.</p>
+                            </div>
+                            <div class="mb-4">
+                                <h6 class="text-secondary"><i class="fas fa-heart me-2"></i>5. TÌNH DUYÊN & GIA ĐẠO</h6>
+                                <p>Phân tích về tình duyên, hôn nhân, và các mối quan hệ gia đình, đưa ra lời khuyên để có một cuộc sống hạnh phúc và hòa thuận.</p>
+                            </div>
+                            <div class="mb-4">
+                                <h6 class="text-secondary"><i class="fas fa-medkit me-2"></i>6. SỨC KHỎE</h6>
+                                <p>Đưa ra dự đoán về các vấn đề sức khỏe tiềm ẩn và lời khuyên để duy trì sức khỏe tốt.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <button type="button" class="btn btn-danger btn-lg me-3" onclick="downloadLaSo()">
+                            <i class="fas fa-download me-2"></i>Tải Lá Số
+                        </button>
+                        <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#bookingModal">
+                            <i class="fas fa-calendar-alt me-2"></i>Đặt Lịch Xem Chi Tiết
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0"><i class="fas fa-th-list me-2"></i>Dịch vụ khác</h6>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><a href="#" class="text-decoration-none text-primary"><i class="fas fa-sun me-2"></i>Xem tử vi hàng ngày</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none text-primary"><i class="fas fa-chart-line me-2"></i>Xem lá số tử vi</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none text-primary"><i class="fas fa-tarot-card me-2"></i>Xem bói Tarot</a></li>
+                            <li class="mb-0"><a href="#" class="text-decoration-none text-primary"><i class="fas fa-home me-2"></i>Tư vấn phong thủy</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h6 class="mb-0"><i class="fas fa-headset me-2"></i>Liên hệ tư vấn</h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-2"><strong class="text-primary"><i class="fas fa-phone me-2"></i>Hotline:</strong> 1900.3333</p>
+                        <p class="mb-2"><strong class="text-primary"><i class="fab fa-whatsapp me-2"></i>Zalo:</strong> 0855.100000</p>
+                        <p class="mb-0"><strong class="text-primary"><i class="fas fa-envelope me-2"></i>Email:</strong> info@example.com</p>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h6 class="mb-0"><i class="fas fa-info-circle me-2"></i>Giới thiệu</h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted small mb-0">Chúng tôi cung cấp các dịch vụ luận giải lá số Tứ Trụ, Tử Vi, Tarot và tư vấn phong thủy chuyên nghiệp, giúp bạn có cái nhìn sâu sắc hơn về cuộc sống và đưa ra những quyết định sáng suốt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel"><i class="fas fa-calendar-check me-2"></i>Đặt lịch xem chi tiết</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label for="bookingName" class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="bookingName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bookingPhone" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="bookingPhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bookingEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="bookingEmail">
+                        </div>
+                        <div class="mb-3">
+                            <label for="bookingNote" class="form-label">Ghi chú</label>
+                            <textarea class="form-control" id="bookingNote" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary"><i class="fas fa-paper-plane me-2"></i>Gửi đăng ký</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel"><i class="fas fa-file-alt me-2"></i>Đăng ký nhận file luận giải chi tiết</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">Vui lòng điền thông tin bên dưới để chúng tôi liên hệ gửi file luận giải chi tiết cho quý khách!</p>
+                    <form id="detailForm">
+                        <div class="mb-3">
+                            <label for="detailName" class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="detailName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="detailPhone" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="detailPhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="detailEmail" class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="detailEmail" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary"><i class="fas fa-envelope-open-text me-2"></i>Gửi đăng ký</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function downloadLaSo() {
+            {% if render %}
+            const data = {
+                hoten: '{{ ho_ten }}',
+                ngay: '{{ ngay_sinh_full }}',
+                gio: '{{ form_data.gio }}',
+                phut: '{{ form_data.phut|default:0 }}',
+                s: '{% if form_data.gioitinh == "nam" %}1{% else %}0{% endif %}'
+            };
+
+            fetch('{% url "create_image_tu_tru" %}', { // Make sure this URL is correct
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}' // Ensure CSRF token is passed
+                },
+                body: new URLSearchParams(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    alert('Có lỗi xảy ra khi tạo file: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra khi gọi API tạo file.');
+            });
+            {% else %}
+                alert('Vui lòng tạo lá số trước khi tải về.');
+            {% endif %}
+        }
+
+        // Form validation for batTuForm
+        document.getElementById('batTuForm').addEventListener('submit', function(e) {
+            const requiredFields = ['hoten', 'ngay', 'thang', 'nam', 'gio', 'gioitinh']; // Added gioitinh as required
+            let isValid = true;
+
+            requiredFields.forEach(fieldName => {
+                let input;
+                if (fieldName === 'gioitinh') {
+                    // For radio buttons, check if at least one is checked
+                    const radioButtons = document.querySelectorAll(`input[name="${fieldName}"]`);
+                    const isRadioChecked = Array.from(radioButtons).some(radio => radio.checked);
+                    if (!isRadioChecked) {
+                        isValid = false;
+                        // You might want to add a visual cue here, e.g., a border around the group
+                        // For simplicity, we'll just mark it as invalid
+                        radioButtons[0].closest('div').classList.add('is-invalid-group'); // Custom class for group
+                    } else {
+                        radioButtons[0].closest('div').classList.remove('is-invalid-group');
+                    }
+                } else {
+                    input = document.querySelector(`[name="${fieldName}"]`);
+                    if (input && !input.value) {
+                        isValid = false;
+                        input.classList.add('is-invalid');
+                    } else if (input) {
+                        input.classList.remove('is-invalid');
+                    }
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+                alert('Vui lòng điền đầy đủ các thông tin bắt buộc (các trường có dấu *)');
+            }
+        });
+
+        // Add class to form fields from Django form for consistent styling
+        document.addEventListener('DOMContentLoaded', function() {
+            const hotenInput = document.getElementById('{{ form.hoten.id_for_label }}');
+            if (hotenInput) {
+                hotenInput.classList.add('form-control');
+            }
+
+            // Clear validation on input change for all form controls
+            document.querySelectorAll('#batTuForm input, #batTuForm select').forEach(input => {
+                input.addEventListener('change', function() {
+                    this.classList.remove('is-invalid');
+                });
+            });
+
+            // Clear validation for radio button group
+            document.querySelectorAll('input[name="gioitinh"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    this.closest('div').classList.remove('is-invalid-group');
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
